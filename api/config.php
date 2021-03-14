@@ -6,8 +6,6 @@ class Config{
     const DB_PASSWORD = "";
     const DB_SCHEME = "";
 
-
-
 }
 
 
