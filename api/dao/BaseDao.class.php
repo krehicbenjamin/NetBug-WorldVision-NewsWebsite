@@ -19,9 +19,22 @@ class BaseDao{
     }
 
     public function insert(){
+
     }
 
-    public function update(){
+    public function update($table, $id, $entity){
+        $sql = "UPDATE ${table} SET ";
+        foreach($entity as $title => $value){
+            $sql .= $title ."= :".$title. ", ";
+        } 
+        $sql = substr($sql, 0, -2);
+        $sql .= "WHERE article_id = :article_id";
+
+        
+        $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
+        $entity['id'] = $id;
+        $stmt->execute($entity);
+
     }
 
     public function query($query, $params){
@@ -34,4 +47,6 @@ class BaseDao{
         $result = $this->query($query, $params);
         return reset($result);
     }
+
+
 }
