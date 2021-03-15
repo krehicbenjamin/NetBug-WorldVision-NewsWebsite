@@ -19,10 +19,17 @@ class CategoriesDao extends BaseDao{
     }
     
     public function update_category($category_id, $category){
+
+        $this->update("categories", $category_id, $category);
+
+        /*
         $sql = "UPDATE categories SET category_name = :category_name WHERE category_id = :category_id";
         $stmt= $this->connection->prepare($sql);
         $stmt->execute($category);
+        */
     }
+
+
 }
 
 ?>
