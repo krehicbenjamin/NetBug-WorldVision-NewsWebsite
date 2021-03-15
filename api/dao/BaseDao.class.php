@@ -22,13 +22,13 @@ class BaseDao{
 
     }
 
-    public function update($table, $id, $entity){
+    public function update($table, $id, $entity, $id_column = "id"){
         $sql = "UPDATE ${table} SET ";
         foreach($entity as $title => $value){
             $sql .= $title ."= :".$title. ", ";
         } 
         $sql = substr($sql, 0, -2);
-        $sql .= "WHERE id = :id";
+        $sql .= "WHERE {$id_column} = :id";
 
         
         $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection

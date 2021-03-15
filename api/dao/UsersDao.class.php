@@ -25,9 +25,9 @@ class UsersDao extends BaseDao{
 
     }
 
-    public function update_user($user_id, $user){
+    public function update_user($id, $user){
 
-        $this->update("users", $user_id, $user);
+        $this->update("users", $id, $user, "user_id");
 
         /*
         $sql = "UPDATE users SET ";

@@ -19,9 +19,9 @@ class ArticleDao{
     }
 
 
-    public function edit_article($article_id, $article){
+    public function edit_article($id, $article){
 
-        $this->update("articles", $article_id, $article);
+        $this->update("articles", $id, $article, "article_id");
 
         /*
         $sql = "UPDATE articles SET ";
