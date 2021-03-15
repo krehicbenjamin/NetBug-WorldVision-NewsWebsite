@@ -27,6 +27,9 @@ class UsersDao extends BaseDao{
 
     public function update_user($user_id, $user){
 
+        $this->update("users", $user_id, $user);
+
+        /*
         $sql = "UPDATE users SET ";
         foreach($user as $name => $value){
             $sql .= $name ."= :".$name. ", ";
@@ -38,6 +41,7 @@ class UsersDao extends BaseDao{
         $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
         $user['user_id'] = $user_id;
         $stmt->execute($user);
+        */
     }
 
     
