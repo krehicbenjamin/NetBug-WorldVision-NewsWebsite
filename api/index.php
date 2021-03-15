@@ -2,9 +2,14 @@
    
    require_once dirname(__FILE__)."/dao/BaseDao.class.php"; 
 
-   $example = new BaseDao() ;
+   require dirname(__FILE__)."/../vendor/autoload.php";
+   require dirname(__FILE__)."/dao/AccountsDao.class.php";
 
-   echo "Hello from API";
+
+   Flight::route('GET /accouts',function(){
+     
+   });
+   
 
 
     ?>
