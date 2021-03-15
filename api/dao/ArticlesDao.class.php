@@ -20,6 +20,10 @@ class ArticleDao{
 
 
     public function edit_article($article_id, $article){
+
+        $this->update("articles", $article_id, $article);
+
+        /*
         $sql = "UPDATE articles SET ";
         foreach($article as $title => $value){
             $sql .= $title ."= :".$title. ", ";
@@ -31,6 +35,7 @@ class ArticleDao{
         $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
         $article['article_id'] = $article_id;
         $stmt->execute($article);
+        */
     }
 
     
