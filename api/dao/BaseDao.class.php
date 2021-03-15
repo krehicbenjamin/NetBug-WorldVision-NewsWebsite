@@ -28,7 +28,7 @@ class BaseDao{
             $sql .= $title ."= :".$title. ", ";
         } 
         $sql = substr($sql, 0, -2);
-        $sql .= "WHERE article_id = :article_id";
+        $sql .= "WHERE id = :id";
 
         
         $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
