@@ -20,7 +20,7 @@ class EditorsDao extends BaseDao{
  
          // Getting the last added users id and returning it 
  
-         $editor['id'] = $this->connection->lastInsertId();
+         $editor['editor_id'] = $this->connection->lastInsertId();
          return $editor;
  
      }
