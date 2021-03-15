@@ -20,14 +20,17 @@ class UsersDao extends BaseDao{
 
         // Getting the last added users id and returning it 
 
-        $user['id'] = $this->connection->lastInsertId();
+        $user['user_id'] = $this->connection->lastInsertId();
         return $user;
 
     }
 
-    public function update_user($id, $user){
+    public function update_user($user_id, $user){
 
-
+        $sql = "UPTADTE users SET username = :username, password = :password, email = :email, added_at = :added_at WHERE user_id = :user_id";
+        $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
+        $user['user_id'] = $user_id;
+        $stmt->execute($user);
     }
 
     
