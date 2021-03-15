@@ -20,11 +20,25 @@ class ArticleDao{
 
 
     public function edit_article($article_id, $article){
+        $sql = "UPDATE articles SET ";
+        foreach($article as $title => $value){
+            $sql .= $title ."= :".$title. ", ";
+        } 
+        $sql = substr($sql, 0, -2);
+        $sql .= "WHERE article_id = :article_id";
 
+        
+        $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
+        $article['article_id'] = $article_id;
+        $stmt->execute($article);
     }
+
+    
 
 
     public function delete_article($article_id){
+        $stmt = $this->conncetion->prepare("DELETE FROM articles WHERE article_id = :article_id");
+        $stmt->execute([$article_id]);
 
     }
 
