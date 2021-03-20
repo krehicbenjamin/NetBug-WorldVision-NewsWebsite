@@ -2,11 +2,21 @@
 
 require_once dirname(__FILE__)."/BaseDao.class.php";
 
-class ArticleDao{
+class ArticlesDao extends BaseDao{
+
+    public function get_article_by_id($article_id){
+        return $this->query_unique("SELECT * FROM articles WHERE article_id = :article_id", ["article_id" => $article_id]);
+    }
+
+    public function get_user_by_title($title){
+        return $this->query_unique("SELECT * FROM articles WHERE title = :title", ["title" => $title]);
+     }
 
     public function add_article($article){
 
-        $sql = "INSERT INTO articles (title, body, picture64, editor, added_at, category) VALUES (:title, :body, :picture64, :editor, :added_at, :category)";
+        $this->insert("articles", $article);
+        /*
+        $sql = "INSERT INTO articles (title, body, picture64, added_at,) VALUES (:title, :body, :picture64, :added_at)";
         $stmt= $this->connection->prepare($sql);  //$pdo is $this->connection
         $stmt->execute($article);
 
@@ -14,7 +24,7 @@ class ArticleDao{
 
         $article['article_id'] = $this->connection->lastInsertId();
         return $article;
-
+        */
 
     }
 
@@ -36,6 +46,7 @@ class ArticleDao{
         $article['article_id'] = $article_id;
         $stmt->execute($article);
         */
+
     }
 
     
