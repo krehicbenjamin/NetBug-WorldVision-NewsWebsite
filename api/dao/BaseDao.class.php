@@ -18,11 +18,40 @@ class BaseDao{
 
     }
 
-    public function insert(){
+    protected function insert($table, $entity){
+        $query = "INSERT INTO ${table} (";
+        foreach ($entity as $column => $value) {
+          $query .= $column.", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= ") VALUES (";
+        foreach ($entity as $column => $value) {
+          $query .= ":".$column.", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= ")";
+    
+        $stmt= $this->connection->prepare($query);
+        $stmt->execute($entity);                                     // sql injection prevention
+        $entity['id'] = $this->connection->lastInsertId();
+        return $entity;
+      }
 
+    protected function update($table, $id, $entity, $id_column = "id"){
+        $query = "UPDATE ${table} SET ";
+        foreach($entity as $name => $value){
+          $query .= $name ."= :". $name. ", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= " WHERE ${id_column} = :id";
+    
+        $stmt= $this->connection->prepare($query);
+        $entity['id'] = $id;
+        $stmt->execute($entity);
     }
 
-    public function update($table, $id, $entity, $id_column = "id"){
+    /*    
+        public function update($table, $id, $entity, $id_column = "id"){
         $sql = "UPDATE ${table} SET ";
         foreach($entity as $title => $value){
             $sql .= $title ."= :".$title. ", ";
@@ -35,8 +64,20 @@ class BaseDao{
         $entity['id'] = $id;
         $stmt->execute($entity);
 
-    }
+        }
+    */
 
+    protected function query($query, $params){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    protected function query_unique($query, $params){
+        $results = $this->query($query, $params);
+        return reset($results);
+    }
+/*
     public function query($query, $params){
         $stmt = $this->connection->prepare($query);             //so basically we send a query we want to execute to this dao function
         $stmt->execute($params);                                //along with the parameters we want to execute it with
@@ -47,6 +88,6 @@ class BaseDao{
         $result = $this->query($query, $params);
         return reset($result);
     }
-
+*/
 
 }
