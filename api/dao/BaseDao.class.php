@@ -39,7 +39,7 @@ class BaseDao{
         return $entity;
       }
 
-    protected function update($table, $id, $entity, $id_column = "id"){
+    protected function execute_update($table, $id, $entity, $id_column = "id"){
         $query = "UPDATE ${table} SET ";
         foreach($entity as $name => $value){
           $query .= $name ."= :". $name. ", ";
@@ -90,7 +90,16 @@ class BaseDao{
         $result = $this->query($query, $params);
         return reset($result);
     }
-*/
+*/  
+
+    public function add($entity){
+        return $this->insert($this->table, $entity);
+    }
+
+    public function update($id, $entity){
+        $this->execute_update($this->table, $id, $entity);
+    }
+
     public function get_by_id($id){
         return $this->query_unique("SELECT * FROM ".$this->table." WHERE id = :id", ["id" => $id]);
     }
