@@ -4,11 +4,13 @@ require_once dirname (__FILE__)."/../config.php";
 
 class BaseDao{
 
-    protected $connection;
+        protected $connection;
+        private $table;
 
-    public function __construct(){
+        public function __construct($table){
+        $this->table = $table;
 
-        try {
+        try{
             $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEME, Config::DC_USERNAME, Config::DB_PASSWORD);
             // set the PDO error mode to exception
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -89,5 +91,11 @@ class BaseDao{
         return reset($result);
     }
 */
+    public function get_by_id($id){
+        return $this->query_unique("SELECT * FROM ".$this->table." WHERE id = :id", ["id" => $id]);
+    }
 
+    public function get_all($offset = 0, $limit = 25){
+        return $this->query("SELECT * FROM ".$this->table." LIMIT ${limit} OFFSET {$offset}", []);
+    }
 }
