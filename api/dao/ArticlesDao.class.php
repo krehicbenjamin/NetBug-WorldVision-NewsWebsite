@@ -12,10 +12,8 @@ class ArticlesDao extends BaseDao{
         return $this->query_unique("SELECT * FROM articles WHERE title = :title", ["title" => $title]);
      }
 
-    public function delete_article($article_id){
-        $stmt = $this->conncetion->prepare("DELETE FROM articles WHERE article_id = :article_id");
-        $stmt->execute([$article_id]);
-
+    public function delete_article($id){
+        return $this->query_unique("DELETE FROM articles WHERE id = :id",["id" => $id]);
     }
 
     
