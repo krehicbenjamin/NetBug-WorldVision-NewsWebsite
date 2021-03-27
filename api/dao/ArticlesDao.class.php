@@ -8,13 +8,14 @@ class ArticlesDao extends BaseDao{
         parent::__construct("articles");
     }
 
-    public function get_article_by_title($title){
-        return $this->query_unique("SELECT * FROM articles WHERE title = :title", ["title" => $title]);
-     }
+    public function get_articles($search, $offset, $limit){
+        return $this->query("SELECT * FROM articles WHERE title LIKE CONCAT('%', :title, '%') LIMIT ${limit} OFFSET ${offset}", ["title" => $search]);
+    }
 
     public function delete_article($id){
-        return $this->query_unique("DELETE FROM articles WHERE id = :id",["id" => $id]);
+        return $this->query_unique("DELETE FROM articles WHERE id = :id", ["id" => $id]);
     }
+
 
     
 }
