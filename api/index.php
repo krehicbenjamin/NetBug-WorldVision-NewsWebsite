@@ -8,6 +8,7 @@
    require_once dirname(__FILE__)."/dao/UsersDao.class.php";
 
    /* Utility function */ 
+
   Flight::map('query_param', function($name, $default_value = 0){
     $request = Flight::request();
     $query_param = @$request->query->getData()[$name];

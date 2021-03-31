@@ -9,7 +9,7 @@ class ArticlesDao extends BaseDao{
     }
 
     public function get_articles($search, $offset, $limit){
-        return $this->query("SELECT * FROM articles WHERE title LIKE CONCAT('%', :title, '%') LIMIT ${limit} OFFSET ${offset}", ["title" => $search]);
+        return $this->query("SELECT * FROM articles WHERE LOWER(title) LIKE CONCAT('%', :title, '%') LIMIT ${limit} OFFSET ${offset}", ["title" => strtolower($search)]);
     }
 
     public function delete_article($id){
