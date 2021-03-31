@@ -1,12 +1,8 @@
 <?php 
-
-
     Flight::route('GET /articles',function(){
         $offset = Flight::query_param('offset', 0);
-        $limit = Flight::query_param('limit', 0);
-
+        $limit = Flight::query_param('limit', 10);
         $search = Flight::query_param('search');
-
         if($search){
             Flight::json(Flight::articleDao()->get_articles($search, $offset, $limit));
         } else {

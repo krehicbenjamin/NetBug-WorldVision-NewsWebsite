@@ -1,7 +1,7 @@
 <?php   
     Flight::route('GET /users', function(){
         $offset = Flight::query_param('offset', 0);
-        $limit = Flight::query_param('limit', 0);
+        $limit = Flight::query_param('limit', 10);
         $users = Flight::userDao()->get_all($offset, $limit);
         Flight::json($users);
     });
