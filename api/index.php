@@ -4,8 +4,10 @@
    error_reporting(E_ALL);
 
    require dirname(__FILE__)."/../vendor/autoload.php";
-   require_once dirname(__FILE__)."/dao/ArticlesDao.class.php";
-   require_once dirname(__FILE__)."/dao/UsersDao.class.php";
+
+   /* require services */
+   require_once dirname(__FILE__)."/services/ArticleService.class.php";   
+   require_once dirname(__FILE__)."./services/UserService.class.php";
 
    /* Utility function */ 
 
@@ -16,13 +18,12 @@
     return $query_param;  
   });
 
+  /* require routes */
+  require_once dirname(__FILE__)."/routes/articles.php";
+  require_once dirname(__FILE__)."/routes/users.php";
 
-   require_once dirname(__FILE__)."/routes/articles.php";
-   require_once dirname(__FILE__)."/routes/users.php";
-
-   Flight::register("articleDao", "ArticlesDao");
-   Flight::register("userDao", "UsersDao");
-
-
-   Flight::start();
+  /* require BLL */
+  Flight::register("articleService", "ArticleService");
+  Flight::register("userService", "UserService");
+  Flight::start();
 ?>
