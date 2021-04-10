@@ -1,7 +1,7 @@
 <?php 
     Flight::route('GET /articles',function(){
         $offset = Flight::query_param('offset', 0);
-         $limit = Flight::query_param('limit', 10);
+        $limit = Flight::query_param('limit', 10);
         $search = Flight::query_param('search');
         $order = Flight::query_param('order');
         Flight::json(Flight::articleService()->get_articles($search, $offset, $limit, $order)); 

@@ -4,9 +4,6 @@ require_once dirname(__FILE__).'/../dao/UserDao.class.php';
 
 
 class UserService extends BaseService{
-
-  private $accountDao;
-
  
 
   public function __construct(){
@@ -58,7 +55,11 @@ class UserService extends BaseService{
 
     } catch (\Exception $e) {
         $this->dao->rollBack();
-        throw $e;
+        if (str_contains($e->getMessage(), 'users.uq_user_email')) {
+          throw new Exception("Account with same email exists in the database", 400, $e);
+        }else{
+          throw $e;
+        }
     }
 
     //  $this->smtpClient->send_register_user_token($user);
