@@ -1,11 +1,12 @@
 <?php  
-/* 
+
     Flight::route('POST /login', function(){
         Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
     });
-*/
+
     Flight::route('POST /register', function(){
-        $data = Flight::request()->data->getData();
+        $request = Flight::request();
+        $data = $request->data->getData();
         Flight::userService()->register($data);
         Flight::json(["message" => "Account created."]);
     });
@@ -41,7 +42,7 @@
         Flight::json($user);
     });
 
-    Flight::route('POST /register', function(){
+    Flight::route('POST /users/register', function(){
         $data = Flight::request()->data->getData();
         Flight::userService()->register($data);
         Flight::json(["message" => "Account created."]);
