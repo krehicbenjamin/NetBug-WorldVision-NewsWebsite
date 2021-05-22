@@ -1,13 +1,13 @@
 <?php
 require_once dirname(__FILE__). '/BaseService.class.php';
-require_once dirname(__FILE__).'/../dao/UserDao.class.php';
+require_once dirname(__FILE__).'/../dao/UsersDao.class.php';
 
 
 class UserService extends BaseService{
  
 
   public function __construct(){
-    $this->dao = new UserDao();
+    $this->dao = new UsersDao();
   }
 
   public function reset($user){
@@ -40,29 +40,24 @@ class UserService extends BaseService{
 
   public function register($user){
     try {
-      $this->dao->beginTransaction();
       $user = parent::add([
-        "name" => $user['name'],
-        "email" => $user['email'],
+        "username" => $user['username'],
         "password" => md5($user['password']),
+        "email" => $user['email'],
         "status" => "PENDING",
-        "role" => "USER",
-        "created_at" => date(Config::DATE_FORMAT),
+        "type" => "USER",
+        "added_at" => date(Config::DATE_FORMAT),
         "token" => md5(random_bytes(16))
       ]);
 
-      $this->dao->commit();
 
     } catch (\Exception $e) {
-        $this->dao->rollBack();
-        if (str_contains($e->getMessage(), 'users.uq_user_email')) {
-          throw new Exception("Account with same email exists in the database", 400, $e);
-        }else{
+        
           throw $e;
-        }
+        
     }
 
-    //  $this->smtpClient->send_register_user_token($user);
+    
 
     return $user;
   }
