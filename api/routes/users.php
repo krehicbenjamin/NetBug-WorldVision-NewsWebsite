@@ -31,7 +31,7 @@
         $request = Flight::request();
         $data = $request->data->getData();
         $user = Flight::userService()->add($data); 
-        Flight::json ($user); 
+        Flight::json($user); 
     });
     
     Flight::route('PUT /users/@id', function($id){
