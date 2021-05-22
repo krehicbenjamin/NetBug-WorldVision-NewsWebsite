@@ -28,6 +28,17 @@ Flight::map('jwt', function($user){
   return ["token" => $jwt];
 });
 
+Flight::route('GET /swagger', function(){
+  $openapi = @\OpenApi\scan(dirname(__FILE__)."/routes");
+  header('Content-Type: application/json');
+  echo $openapi->toJson();
+});
+
+Flight::route('GET /', function(){
+  Flight::redirect('/docs');
+});
+
+
   /* require routes */
   require_once dirname(__FILE__)."/routes/articles.php";
   require_once dirname(__FILE__)."/routes/users.php";
