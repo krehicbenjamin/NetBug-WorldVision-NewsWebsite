@@ -42,6 +42,7 @@ Flight::route('GET /', function(){
   /* require routes */
   require_once dirname(__FILE__)."/routes/articles.php";
   require_once dirname(__FILE__)."/routes/users.php";
+  require_once dirname(__FILE__)."/routes/middleware.php";
 
   /* require BLL */
   Flight::register("articleService", "ArticleService");
