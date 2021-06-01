@@ -1,5 +1,6 @@
 <?php  
 /* Swagger documentation */
+
 /**
  * @OA\Info(title="NetBug API", version="0.2")
  * @OA\OpenApi(
@@ -10,7 +11,7 @@
  */
 
 /**
- * @OA\Post(path="/login", tags={"login"},
+ * @OA\Post(path="/user/login", tags={"login"},
  *   @OA\RequestBody(description="Basic user info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -23,16 +24,16 @@
  * )
  */
 
-    Flight::route('POST /login', function(){
+    Flight::route('POST /user/login', function(){
         Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
     });
 
 /**
- * @OA\Post(path="/register", tags={"login"},
+ * @OA\Post(path="/user/register", tags={"login"},
  *   @OA\RequestBody(description="Basic user info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
- *     				 @OA\Property(property="name", required="true", type="string", example="First Last Name",	description="Name of the user`" ),
+ *     				 @OA\Property(property="username", required="true", type="string", example="First Last Name",	description="Name of the user`" ),
  *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com",	description="User's email address" ),
  *             @OA\Property(property="password", required="true", type="string", example="12345",	description="Password" )
  *          )
@@ -41,7 +42,7 @@
  *  @OA\Response(response="200", description="Message that acount has been created.")
  * )
  */
-    Flight::route('POST /register', function(){
+    Flight::route('POST /user/register', function(){
         $request = Flight::request();
         $data = $request->data->getData();
         Flight::userService()->register($data);
@@ -49,7 +50,7 @@
     });
 
 
-    Flight::route('GET /users', function(){
+    Flight::route('GET /admin/users', function(){
         $offset = Flight::query_param('offset', 0);
         $limit = Flight::query_param('limit', 10);
         $users = Flight::userService()->get_all($offset, $limit);
@@ -92,12 +93,6 @@
         $user = Flight::userService()->update($id, $data);
         $user = Flight::userService()->get_by_id($id);
         Flight::json($user);
-    });
-
-    Flight::route('POST /users/register', function(){
-        $data = Flight::request()->data->getData();
-        Flight::userService()->register($data);
-        Flight::json(["message" => "Account created."]);
     });
 
     Flight::route('GET /confirm/@token', function($token){
