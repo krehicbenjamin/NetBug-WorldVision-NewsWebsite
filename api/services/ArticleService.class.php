@@ -15,6 +15,9 @@
                 return ($this->dao->get_all($offset, $limit, $order));
             } 
         }
+        public function get_article_by_id($id){
+                return ($this->dao->get_by_id($id));
+        }
 
         public function delete_article($id){
             $this->dao->delete_article($id);
