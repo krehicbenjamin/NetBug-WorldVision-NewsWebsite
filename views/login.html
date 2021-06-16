@@ -160,6 +160,7 @@ function doLogin(){
     }
     $("login-link").prop('disabled', true);
     $.post("http://localhost:8082/BenjaminKrehicProjectWeb/api/login", login_info).done(function(data){
+        window.localStorage.setItem("token", data.token);
         window.location = "index.html";
     }).fail(function(error){
         $("login-link").prop('disabled', false);
