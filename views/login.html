@@ -10,8 +10,8 @@
                 <h3 class="login-heading mb-4">Welcome back!</h3>
                 <form>
                   <div class="form-label-group">
-                    <input id ="username" type="text"  class="form-control" placeholder="Username" required autofocus>
-                    <label for="username">Username</label>
+                    <input id ="email" type="email"  class="form-control" placeholder="Email" required autofocus>
+                    <label for="email">Email</label>
                   </div>
   
                   <div class="form-label-group">
@@ -155,9 +155,13 @@
 <script type="text/javascript">
 function doLogin(){
     var login_info = {
-         'username' : $('#username').val(),
+         'email' : $('#email').val(),
          'password' : $('#password').val()
     }
+
+    $.post("http://localhost:8082/BenjaminKrehicProjectWeb/api/login", login_info).done(function(data){
+        alert("Data loaded: " + data);
+    });
 
 }
     
