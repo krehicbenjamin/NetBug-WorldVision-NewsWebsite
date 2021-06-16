@@ -49,6 +49,10 @@ Flight::route('GET /', function(){
   
   require_once dirname(__FILE__)."/services/ArticleService.class.php";   
   require_once dirname(__FILE__)."/services/UserService.class.php";
+  require_once dirname(__FILE__)."/services/TagsService.class.php";   
+  require_once dirname(__FILE__)."/services/CategoriesService.class.php";
+  require_once dirname(__FILE__)."/services/ImagesService.class.php";   
+
 
   /* register services */
   Flight::register("articleService", "ArticleService");
