@@ -95,13 +95,13 @@
                       <a class="nav-link active" href="#main_page">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/world.html">World</a>
+                      <a class="nav-link" href="#world">World</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/author.html">Magazine</a>
+                      <a class="nav-link" href="#sports">Sports</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/news-post.html">Blog</a>
+                      <a class="nav-link" href="#business">Business</a>
                     </li>
                     <li class="nav-item">
                       <a onclick="doLogout()" class="nav-link">Logout</a>
@@ -715,6 +715,10 @@
         <main id="jqueryspapp" role="main">
           <section id="main_page" data-load="main_page.html" ></section>
           <section id="news_post" data-load="news_post.html"></section>
+          <section id="world" data-load="world.html" ></section>
+          <section id="sports" data-load="sports.html"></section>
+          <section id="business" data-load="business.html" ></section>
+
           <section id="404" data-load="404.html"></section>
         </main>
         <!-- main-panel ends -->
@@ -861,7 +865,7 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var app = $.jQuerySPApp({defaultView  : "login.html"}); // initialize
+      var app = $.jQuerySPApp({defaultView  : "main_page"}); // initialize
       app.run();
       
       if (!window.localStorage.getItem("token")){
@@ -873,7 +877,8 @@
 
           function doLogout(){
             window.localStorage.clear();
-            window.location = "login.html";
+            $('body').hide();
+            window.location = "index.html";
           }
   </script>
 
