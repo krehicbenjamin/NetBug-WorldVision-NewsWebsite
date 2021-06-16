@@ -1,0 +1,49 @@
+/* Buttons */
+
+.btn {
+  font-size: $btn-font-size;
+  line-height: 1;
+  font-weight: 400;
+  border-radius: $btn-border-radius;
+  &.btn-sm {
+    font-size: $btn-font-size-sm;
+    padding: $btn-padding-y-sm $btn-padding-x-sm;
+    line-height: 0;
+  }
+  &.btn-lg {
+    font-size: $btn-font-size-lg;
+    &:focus {
+      outline: none;
+    }
+  }
+  &.btn-xs {
+    padding: $btn-padding-y-xs $btn-padding-x-xs;
+    font-size: $btn-font-size-xs;
+  }
+  &.btn-secondary {
+    color: $primary;
+  }
+  &.btn-up {
+    transition:  0.5s ease, transform 0.25s ease;
+    &:hover {
+      transform: translate3d(0, -3px, 0);
+      background: $primary;
+      color: $white;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}

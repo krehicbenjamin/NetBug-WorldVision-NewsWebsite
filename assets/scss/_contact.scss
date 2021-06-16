@@ -1,0 +1,25 @@
+.contact-wrap {
+  .form-group {
+    margin-bottom: 1.5rem;
+    .form-control {
+      border: none;
+      border-bottom: 1px solid $border-color;
+      padding: 1rem;
+      padding-left: 0;
+      height: 60px;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+      }
+      &.textarea {
+        height: 150px;
+      }
+    }
+  }
+  .contact-right-padding {
+    padding-left: 100px;
+    @media (max-width: 767px) {
+      padding-left: 0px;
+    }
+  }
+}

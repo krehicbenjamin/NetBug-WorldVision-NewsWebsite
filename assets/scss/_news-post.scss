@@ -1,0 +1,24 @@
+.news-post-wrapper {
+  width: 915px;
+  margin: 0 auto;
+  margin-top: 50px;
+  @media (max-width: 999px) {
+    width: 100%;
+  }
+  h1 {
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    margin-bottom: 22px;
+  }
+  .news-post-wrapper-sm {
+    padding: 0 100px;
+    @media (max-width: 999px) {
+      padding: 0 0;
+    }
+  }
+  .border-radius-6 {
+    border-radius: 6px;
+  }
+}
