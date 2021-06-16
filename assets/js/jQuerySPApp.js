@@ -1,17 +1,17 @@
 (function($) {
- 
-  $.spapp = function(options) {
+
+  $.jQuerySPApp = function(options) {
 
     // set config and routes
     var config, routes = {};
 
     config = $.extend({
-      defaultView  : $("main#spapp > section:last-child").attr("id"),
-      templateDir  : './tpl/',
+      defaultView  : $("main#jqueryspapp > section:last-child").attr("id"),
+      templateDir  : './views/',
       pageNotFound : false
     }, options );
 
-    $("main#spapp > section").each(function(k, e) {
+    $("main#jqueryspapp > section").each(function(k, e) {
       var elm = $(this);
       routes[elm.attr("id")] = {
         view     : elm.attr("id"),
@@ -62,5 +62,5 @@
 
     return this;
   };
- 
+
 }(jQuery));
