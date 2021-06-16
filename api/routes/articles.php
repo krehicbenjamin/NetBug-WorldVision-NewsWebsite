@@ -9,11 +9,7 @@
 
     Flight::route('GET /user/articles/@id',function($id){
         $articles = Flight::articleService()->get_by_id($id);
-        if ($article['id'] != Flight::get('user')['aid']){
-            throw new Exception("Invalid campaign", 403);
-          }else{
             Flight::json($articles);
-          }
     });
 
     Flight::route('POST /admin/articles',function(){
