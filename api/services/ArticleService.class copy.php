@@ -28,12 +28,10 @@
         
       }
     
-      public function update_article($id, $article){
+      public function update_articles($id, $article){
         $article = $this->dao->get_by_id($id);
         return $this->update($id, $article);
       }
     }
    
-
-    
 ?>
