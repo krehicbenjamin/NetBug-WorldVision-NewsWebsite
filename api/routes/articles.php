@@ -7,6 +7,12 @@
         Flight::json(Flight::articleService()->get_articles($search, $offset, $limit, $order)); 
     });
 
+/**
+ * @OA\Get(path="/user/articles/{id}", tags={"x-user", "articles"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="id of the article"),
+ *     @OA\Response(response="200", description="Fetch individual articles")
+ * )
+ */
     Flight::route('GET /user/articles/@id',function($id){
         $articles = Flight::articleService()->get_by_id($id);
             Flight::json($articles);
