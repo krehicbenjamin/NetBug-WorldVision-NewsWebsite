@@ -20,6 +20,20 @@
       rel="stylesheet"
       href="./assets/vendors/owl.carousel/dist/assets/owl.theme.default.min.css"
     />
+
+
+
+
+
+
+    <!-- SPAPP CSS -->
+    <link rel="stylesheet" href="./assets/css/jQuerySPApp.css" />
+
+
+
+
+
+
     <!-- End plugin css for this page -->
     <link rel="shortcut icon" href="assets/images/favicon.png" />
     <!-- inject:css -->
@@ -37,7 +51,7 @@
               <div class="d-flex justify-content-between align-items-center navbar-top">
                 <ul class="navbar-left">
                   <li>Wed, March 4, 2020</li>
-                  <li>30°C,London</li>
+                  <li>30°C,Sarajevo</li>
                 </ul>
                 <div>
                   <a class="navbar-brand" href="#"
@@ -107,7 +121,7 @@
                       </button>
                     </li>
                     <li class="nav-item active">
-                      <a class="nav-link active" href="index.html">Home</a>
+                      <a class="nav-link active" href="#main_page">Home</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="pages/world.html">World</a>
@@ -125,18 +139,6 @@
                       <a class="nav-link" href="pages/sports.html">Sports</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/art.html">Art</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/politics.html">Politics</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/real-estate.html">Real estate</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/travel.html">Travel</a>
-                    </li>
-                    <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
                     </li>
                   </ul>
@@ -147,7 +149,7 @@
             <!-- partial -->
           </div>
         </header>
-        <div class="container">
+        <!--<div class="container">
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center">
               <div class="d-flex justify-content-between  mb-3 mb-lg-0">
@@ -738,7 +740,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
+        <main id="jqueryspapp" role="main">
+          <section id="main_page" data-load="main_page.html" ></section>
+          <section id="news_post" data-load="news_post.html"></section>
+          <section id="view_3"><h1>view 3</h1></section>
+          <section id="404"data-load="404.html"></section>
+        </main>
         <!-- main-panel ends -->
         <!-- container-scroller ends -->
 
@@ -865,6 +873,36 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="./assets/js/demo.js"></script>
+
+
+
+
+    <!-- adding SPASS JS-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="assets/js/jQuerySPApp.js"></script>
+
+
+
+
     <!-- End custom js for this page-->
   </body>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var app = $.jQuerySPApp({defaultView  : "main_page"}); // initialize
+
+      // define routes
+      
+      app.route({view: 'main_page', load: 'main_page.html' });
+      app.route({view: 'news_post', load: 'news_post.html' });
+      app.route({view: '404', load: '404.html' });
+      
+
+      // run app
+      app.run();
+    });
+  </script>
+
 </html>
