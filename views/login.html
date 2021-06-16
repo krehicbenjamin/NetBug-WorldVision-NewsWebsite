@@ -23,7 +23,7 @@
                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                   </div>
-                  <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" onclick="doLogin()">Sign in</button>
+                  <button  id = "login-link"class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" onclick="doLogin()">Sign in</button>
                   <div class="text-center">
                     <a class="small" href="#register">Don't have an accout?</a></div>
                 </form>
@@ -158,9 +158,12 @@ function doLogin(){
          'email' : $('#email').val(),
          'password' : $('#password').val()
     }
-
+    $("login-link").prop('disabled', true);
     $.post("http://localhost:8082/BenjaminKrehicProjectWeb/api/login", login_info).done(function(data){
-        alert("Data loaded: " + data);
+        window.location = "index.html";
+    }).fail(function(error){
+        $("login-link").prop('disabled', false);
+        alert(error.responseJSON.message);
     });
 
 }
