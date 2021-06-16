@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>World Vision</title>
+    <title>NetBug</title>
     <!-- plugin css for this page -->
     <link
       rel="stylesheet"
@@ -21,7 +21,7 @@
       href="./assets/vendors/owl.carousel/dist/assets/owl.theme.default.min.css"
     />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="./assets/css/login.css">
 
 
 
@@ -43,7 +43,7 @@
     <!-- endinject -->
   </head>
 
-  <body style="display: none;">
+  <body>
     <div class="container-scroller">
       <div class="main-panel">
         <header id="header">
@@ -52,8 +52,8 @@
             <nav class="navbar navbar-expand-lg navbar-light">
               <div class="d-flex justify-content-between align-items-center navbar-top">
                 <ul class="navbar-left">
-                  <li>Wed, March 4, 2020</li>
-                  <li>30°C,Sarajevo</li>
+                  
+                  
                 </ul>
                 <div>
                   <a class="navbar-brand" href="#"
@@ -62,40 +62,9 @@
                 </div>
                 <div class="d-flex">
                   <ul class="navbar-right">
-                    <li>
-                      <a href="#">ENGLISH</a>
-                    </li>
-                    <li>
-                      <a href="#">ESPAÑOL</a>
-                    </li>
+                    
                   </ul>
-                  <ul class="social-media">
-                    <li>
-                      <a href="#">
-                        <i class="mdi mdi-instagram"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="mdi mdi-facebook"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="mdi mdi-youtube"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="mdi mdi-linkedin"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="mdi mdi-twitter"></i>
-                      </a>
-                    </li>
-                  </ul>
+                  
                 </div>
               </div>
               <div class="navbar-bottom-menu">
@@ -135,10 +104,7 @@
                       <a class="nav-link" href="pages/news-post.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="pages/business.html">Business</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="login.html">Logout</a>
+                      <a onclick="doLogout()" class="nav-link">Logout</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
@@ -743,11 +709,12 @@
             </div>
           </div>
         </div>-->
+        
+      
+      
         <main id="jqueryspapp" role="main">
           <section id="main_page" data-load="main_page.html" ></section>
           <section id="news_post" data-load="news_post.html"></section>
-          <section id="login" data-load="login.html"></section>
-          <section id="register" data-load="register.html"></section>
           <section id="404" data-load="404.html"></section>
         </main>
         <!-- main-panel ends -->
@@ -894,11 +861,11 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var app = $.jQuerySPApp({defaultView  : "#login"}); // initialize
+      var app = $.jQuerySPApp({defaultView  : "login.html"}); // initialize
       app.run();
       
       if (!window.localStorage.getItem("token")){
-              window.location = "#login";
+              window.location = "login.html";
             }else{
               $('body').show();
             }
@@ -906,7 +873,7 @@
 
           function doLogout(){
             window.localStorage.clear();
-            window.location = "#login";
+            window.location = "login.html";
           }
   </script>
 
