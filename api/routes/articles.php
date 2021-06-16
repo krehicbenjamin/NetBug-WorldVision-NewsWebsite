@@ -14,7 +14,7 @@
  * )
  */
     Flight::route('GET /user/articles/@id',function($id){
-        $articles = Flight::articleService()->get_by_id($id);
+        $articles = Flight::articleService()->get_article_by_id($id);
             Flight::json($articles);
     });
 
