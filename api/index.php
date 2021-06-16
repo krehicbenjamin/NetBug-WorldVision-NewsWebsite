@@ -5,9 +5,7 @@
 
    require dirname(__FILE__)."/../vendor/autoload.php";
 
-   /* require services */
-   require_once dirname(__FILE__)."/services/ArticleService.class.php";   
-   require_once dirname(__FILE__)."/services/UserService.class.php";
+   
 
    /* Utility function */  
   Flight::map('query_param', function($name, $default_value = 0){
@@ -43,8 +41,16 @@ Flight::route('GET /', function(){
   require_once dirname(__FILE__)."/routes/articles.php";
   require_once dirname(__FILE__)."/routes/users.php";
   require_once dirname(__FILE__)."/routes/middleware.php";
+  require_once dirname(__FILE__)."/routes/tags.php";
+  require_once dirname(__FILE__)."/routes/categories.php";
+  require_once dirname(__FILE__)."/routes/images.php";
 
   /* require BLL */
+  
+  require_once dirname(__FILE__)."/services/ArticleService.class.php";   
+  require_once dirname(__FILE__)."/services/UserService.class.php";
+
+  /* register services */
   Flight::register("articleService", "ArticleService");
   Flight::register("userService", "UserService");
 
