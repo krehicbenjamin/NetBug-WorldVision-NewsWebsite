@@ -11,7 +11,7 @@
  */
 
 /**
- * @OA\Post(path="/user/login", tags={"login"},
+ * @OA\Post(path="/login", tags={"login"},
  *   @OA\RequestBody(description="Basic user info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -24,12 +24,12 @@
  * )
  */
 
-    Flight::route('POST /user/login', function(){
+    Flight::route('POST /login', function(){
         Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
     });
 
 /**
- * @OA\Post(path="/user/register", tags={"login"},
+ * @OA\Post(path="/register", tags={"login"},
  *   @OA\RequestBody(description="Basic user info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -42,7 +42,7 @@
  *  @OA\Response(response="200", description="Message that acount has been created.")
  * )
  */
-    Flight::route('POST /user/register', function(){
+    Flight::route('POST /register', function(){
         $request = Flight::request();
         $data = $request->data->getData();
         Flight::userService()->register($data);
