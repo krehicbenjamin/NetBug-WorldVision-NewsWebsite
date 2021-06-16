@@ -2,61 +2,59 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="news-post-wrapper">
-          <div class="news-post-wrapper-sm ">
-            <h1 class="text-center">
-              Use Our Compilation Of Most Famous Museums
-            </h1>
-            <div class="text-center">
-              <a href="#" class="btn btn-dark font-weight-bold mb-4">News</a>
-            </div>
-            <p
-              class="fs-15 d-flex justify-content-center align-items-center m-0"
-            >
-              <img
-                src="../assets/images/news/news-1.jpg"
-                alt=""
-                class="img-xs img-rounded mr-2"
-              />
-               23 February, 2018
-            </p>
-            <p class="pt-4 pb-4">
-              He has led a remarkable campaign, defying the traditional
-              mainstream parties courtesy of his En Marche! movement. For
-              many, however, the campaign has become less about backing Macron
-              and instead about voting against Le Pen, the National Front
-              candidate.
-            </p>
-          
-            <div class="text-center pb-5 mb-5 border-bottom">
-              <a
-                href="#"
-                class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0"
-                >News</a
-              >
-              <a
-                href="#"
-                class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0"
-                >News</a
-              >
-              <a
-                href="#"
-                class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0"
-                >News</a
-              >
-              <a
-                href="#"
-                class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0"
-                >News</a
-              >
-              <a
-                href="#"
-                class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0"
-                >News</a
-              >
-            </div>
+          <div id="article_view" class="news-post-wrapper-sm ">
             
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    const h = localStorage.getItem("article_id");
+   
+
+
+
+    getArticle(localStorage.getItem("article_id"));
+    
+    
+    
+    function getArticle(id){
+      
+    $.ajax({
+      url: 'api/user/articles/'+id,
+      type: 'GET',
+      beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+      success: function(data){
+        console.log(data);
+
+          var html = '';
+          var test = data.id;
+          if(test == localStorage.getItem("article_id")){} else location.reload();
+          console.log(test == localStorage.getItem("article_id"));
+          
+          
+            html += '<h1 class="text-center">'+data.title+'</h1><div class="text-center"><a href="#" class="btn btn-dark font-weight-bold mb-4">'
+            +data.category+'</a></div><p class="fs-15 d-flex justify-content-center align-items-center m-0"><img src="data:image/png;base64,'+data.picture64+'" class="img-fluid mb-4" style="width: 980px; height: 500px;"/>'
+            +'<hr>30 May, 2021</p><p class="pt-4 pb-4">'+data.body+'</p>';
+          
+            
+          $("#article_view").html(html);
+          
+      }
+
+    });
+    }
+    
+      
+    
+    
+   /* $( "#news_post" )
+  .focusout(function() {
+    localStorage.removeItem("article_id");
+  });
+  $( "#news_post" ).focusin(function() {
+    location.reload();
+  });*/
+  </script>
