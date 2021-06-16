@@ -41,7 +41,7 @@
     <!-- endinject -->
   </head>
 
-  <body>
+  <body style="display: none;">
     <div class="container-scroller">
       <div class="main-panel">
         <header id="header">
@@ -747,7 +747,7 @@
           <section id="login" data-load="login.html"></section>
           <section id="register" data-load="register.html"></section>
           <section id="view_3"><h1>view 3</h1></section>
-          <section id="404"data-load="404.html"></section>
+          <section id="404" data-load="404.html"></section>
         </main>
         <!-- main-panel ends -->
         <!-- container-scroller ends -->
@@ -893,18 +893,20 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var app = $.jQuerySPApp({defaultView  : "main_page"}); // initialize
-
-      // define routes
-      
-      app.route({view: 'main_page', load: 'main_page.html' });
-      app.route({view: 'news_post', load: 'news_post.html' });
-      app.route({view: '404', load: '404.html' });
-      
-
-      // run app
+      var app = $.jQuerySPApp({defaultView  : "#login"}); // initialize
       app.run();
-    });
+      
+      if (!window.localStorage.getItem("token")){
+              window.location = "#login";
+            }else{
+              $('body').show();
+            }
+          });
+
+          function doLogout(){
+            window.localStorage.clear();
+            window.location = "#login";
+          }
   </script>
 
 </html>
