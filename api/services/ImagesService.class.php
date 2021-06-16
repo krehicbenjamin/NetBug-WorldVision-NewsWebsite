@@ -7,6 +7,8 @@
         public function __construct(){
             $this->dao = new ImagesDao(); 
         }
-
+        public function get_images($search, $offset, $limit, $order){
+            return ($this->dao->get_all($offset, $limit, $order));
+    }
     }
 ?>
