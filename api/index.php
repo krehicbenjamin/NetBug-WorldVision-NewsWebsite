@@ -57,6 +57,10 @@ Flight::route('GET /', function(){
   /* register services */
   Flight::register("articleService", "ArticleService");
   Flight::register("userService", "UserService");
+  Flight::register("tagsService", "TagsService");
+  Flight::register("categoriesService", "CategoriesService");
+  Flight::register("imagesService", "ImagesService");
+
 
   
   Flight::start();
