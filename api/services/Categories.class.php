@@ -8,5 +8,12 @@
             $this->dao = new CategoriesDao(); 
         }
 
+        public function get_categories($search, $offset, $limit, $order){
+                return ($this->dao->get_all($offset, $limit, $order));
+        }
+
+        
+
     }
+
 ?>
