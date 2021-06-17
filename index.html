@@ -866,6 +866,19 @@
   <script type="text/javascript">
     $(document).ready(function() {
       var app = $.jQuerySPApp({defaultView  : "main_page"}); // initialize
+
+      app.route({
+        view : "news_post",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+          getArticle(localStorage.getItem("article_id"));
+            
+         }
+      });
+
       app.run();
       
       if (!window.localStorage.getItem("token")){
