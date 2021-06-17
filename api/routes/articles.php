@@ -18,6 +18,11 @@
             Flight::json($articles);
     });
 
+    Flight::route('GET /user/articles/cat/@category',function($category){
+        $articles = Flight::articleService()->get_article_by_category($category);
+        Flight::json($articles);
+    });
+
     Flight::route('POST /admin/articles',function(){
         $request = Flight::request();
         $data = $request->data->getData();
