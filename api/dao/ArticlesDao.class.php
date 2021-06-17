@@ -21,6 +21,9 @@ class ArticlesDao extends BaseDao{
     public function delete_article($id){
         return $this->query_unique("DELETE FROM articles WHERE id = :id", ["id" => $id]);
     }
+    public function get_by_category($category){
+        return $this->query("SELECT * FROM articles WHERE category = :category LIMIT 9 OFFSET 0", ["category" => $category]);
+    }
 
 
     
