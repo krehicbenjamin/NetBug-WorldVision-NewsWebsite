@@ -42,7 +42,7 @@
                                         <input id="password" class="form-control" placeholder="Password" name="password" type="password" value="" required>
                                     </div>
                                     <div class="form-group">
-                                      <button id="register-link" onclick="doRegister();" class="btn btn-lg btn-success btn-block">Register</button>
+                                      <button id="register-link" onclick="doRegister();" class="btn btn-lg btn-success btn-block" type="button">Register</button>
                                     </div>
                                     
                                 </fieldset>
@@ -74,7 +74,7 @@
                     'password' : $('#password').val()
                 }
                 $("register-link").prop('disabled', true);
-                
+
                 $.post("api/register", register_info).done(function(data){
                     console.log(data);
                     //window.localStorage.setItem("token", data.token);
