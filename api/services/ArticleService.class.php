@@ -19,9 +19,26 @@
                 return ($this->dao->get_by_id($id));
         }
 
+        public function get_article_by_category($category){
+            return ($this->dao->get_by_category($category));
+        }
+
         public function delete_article($id){
             $this->dao->delete_article($id);
        }
+       public function add_article($article){
+        $article_add['title'] = $article['title'];
+        $article_add['body'] = $article['body'];
+        $article_add['picture64'] = $article['picture64'];
+        $article_add['added_at'] = date(Config::DATE_FORMAT);
+        return parent::add($article_add);
+      
+    }
+  
+    public function update_articles($id, $article){
+      $article = $this->dao->get_by_id($id);
+      return $this->update($id, $article);
+    }
    
 
     }
