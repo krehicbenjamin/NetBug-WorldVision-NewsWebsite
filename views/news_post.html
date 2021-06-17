@@ -11,10 +11,7 @@
   </div>
 
   <script type="text/javascript">
-    const h = localStorage.getItem("article_id");
    
-
-
 
     getArticle(localStorage.getItem("article_id"));
     
@@ -32,7 +29,7 @@
           var html = '';
           var test = data.id;
           if(test == localStorage.getItem("article_id")){} else location.reload();
-          console.log(test == localStorage.getItem("article_id"));
+          console.log(test != localStorage.getItem("article_id"));
           
           
             html += '<h1 class="text-center">'+data.title+'</h1><div class="text-center"><a href="#" class="btn btn-dark font-weight-bold mb-4">'
@@ -41,12 +38,17 @@
           
             
           $("#article_view").html(html);
-          
+          localStorage.removeItem("article_id");
       }
 
     });
     }
-    
+    window.onfocus = function() {
+	    if(!window.location.hash) {
+		    window.location = window.location + '#news_post';
+		    window.location.reload();
+	    }
+    }
       
     
     
