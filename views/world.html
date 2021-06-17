@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="row">
-            <div id="articles-main" class="col-lg-9">
+            <div id="articles-world" class="col-lg-9">
               
     
             </div>
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      
+
   <script type="text/javascript">
     getArticlesWorld();
 
@@ -44,7 +44,7 @@
           var html = '<div class="row">';
           
           for(var i = 0; i < data.length; i++){
-            var decodedHTML = window.atob(data[i].picture64);
+            
             html += '<div id="'+data[i].id+'" onclick="openPage();" class="col-sm-4 mb-5 mb-sm-2"><div class="position-relative image-hover">'
                 +'<a onclick="openPage();"><img src="data:image/png;base64,'+data[i].picture64+'" class="img-fluid" style = "width:300px; height: 150px;" /></a>'
                 +'<span class="thumb-title">'+data[i].category+'</span></div><h5 class="font-weight-600 mt-3">'
@@ -57,7 +57,7 @@
           }
           html += '</div>'
           
-          $("#articles-main").html(html);
+          $("#articles-world").html(html);
       }
 
     });
