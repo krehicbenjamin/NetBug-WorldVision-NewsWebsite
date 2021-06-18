@@ -22,11 +22,11 @@
 
     function getArticles(search){
     $.ajax({
-      url: 'api/user/articles/search/'+ search,
+      url: 'api/user/articles?' + search,
       type: 'GET',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
-       
+        console.log(data);
 
           var html = '<div class="row">';
           
