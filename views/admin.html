@@ -160,34 +160,80 @@
   </head>
   
     <div class="testbox">
-    <form action="/">
-     
+    <form id="article_form" role="form">
+     <fieldset>
         
       
       <div class="item">
         <p>Article Title</p>
-        <input type="text" name="name" placeholder="Title" required/>
+        <input id="title" type="text" name="name" placeholder="Title" required/>
         <p>Article Category</p>
         <div class="city-item">
-          <select required>
-            <option selected value="" disabled>Category</option>
-            <option value="1">NEWS</option>
-            <option value="2">WORLD</option>
-            <option value="3">SPORTS</option>
-            <option value="4">BUSINESS</option>
+          <select id="cat" required>
+            <option selected value="NEWS" disabled>Category</option>
+            <option value="NEWS">NEWS</option>
+            <option value="WORLD">WORLD</option>
+            <option value="SPORTS">SPORTS</option>
+            <option value="BUSINESS">BUSINESS</option>
           </select>
         </div>
       </div>
      
       <div class="item">
         <p>Article Body</p>
-        <textarea rows="3"></textarea>
+        <input id="body" type="text" name="name" placeholder="Body"  required/>
       </div>
       <div class="item">
-        <input type="file" id="myFile" name="Picture" accept="image/*" required>
-        <button type="submit"> ADD ARTICLE </button>
+        <input type="file" id="myFile" name="Picture" accept="image/*" onchange="imageUploaded()" required>
+        <button type="submit" onclick="doAddArticle()"> ADD ARTICLE </button>
       </div>
-      
+    </fieldset>
     </form>
     </div>
     
+    <script type="text/javascript">
+        $("#article-form").on("submit", function(e){
+            e.preventDefault();
+           doAddArticle();
+        });
+        let base64String = "";
+  
+function imageUploaded() {
+    var file = document.querySelector(
+        'input[type=file]')['files'][0];
+  
+    var reader = new FileReader();
+    console.log("next");
+      
+    reader.onload = function () {
+        base64String = reader.result.replace("data:", "")
+            .replace(/^.+,/, "");
+  
+        imageBase64Stringsep = base64String;
+  
+        // alert(imageBase64Stringsep);
+        //console.log(base64String);
+    }
+      reader.readAsDataURL(file);
+}
+   function doAddArticle(){
+        var article_info = {
+            'title' : $('#title').val(),
+            'category' : $('#cat').val(),
+            'body' : $('#body').val(),
+            'picture64' : base64String,
+            'added_at' : Math.floor(Date.now() / 1000)
+        }
+        console.log(article_info.picture64);
+        $.post("api/admin/articles", article_info).done(function(data){
+            console.log(data);
+            //window.localStorage.setItem("token", data.token);
+            
+        }).fail(function(error){
+            alert(error.responseJSON.message);
+        });
+    
+    }
+    
+        
+</script>
