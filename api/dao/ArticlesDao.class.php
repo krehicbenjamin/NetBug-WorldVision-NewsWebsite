@@ -22,7 +22,10 @@ class ArticlesDao extends BaseDao{
         return $this->query_unique("DELETE FROM articles WHERE id = :id", ["id" => $id]);
     }
     public function get_by_category($category){
-        return $this->query("SELECT * FROM articles WHERE category = :category LIMIT 9 OFFSET 0", ["category" => $category]);
+        return $this->query("SELECT * FROM articles WHERE category = :category LIMIT 10 OFFSET 0", ["category" => $category]);
+    }
+    public function get_by_search($search){
+        return $this->query("SELECT * FROM articles WHERE LOWER(title) LIKE CONCAT('%', :title, '%') LIMIT 10 OFFSET 0", ["title" => strtolower($search)]);
     }
 
 
