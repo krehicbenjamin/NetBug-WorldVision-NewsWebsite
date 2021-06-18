@@ -19,7 +19,7 @@
 
   <script type="text/javascript">
     getArticles(localStorage.getItem('search'));
-
+    
     function getArticles(search){
     $.ajax({
       url: 'api/user/articles?' + search,
@@ -27,7 +27,7 @@
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
         console.log(data);
-
+        console.log(localStorage.getItem('search'));
           var html = '<div class="row">';
           
           for(var i = 0; i < data.length; i++){
