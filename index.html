@@ -111,7 +111,7 @@
                     </li>
                     <li class="nav-item">
                       <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <input id="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                         <button type="button" class="btn btn-outline-primary" onclick="doSearch()">search</button>
                       </div>
                     </li>
@@ -724,7 +724,7 @@
           <section id="world" data-load="world.html" ></section>
           <section id="sports" data-load="sports.html"></section>
           <section id="business" data-load="business.html" ></section>
-          <section id="search" data-load="search.html" ></section>
+          <section id="search_page" data-load="search_page.html" ></section>
           <section class="admin" id="admin" data-load="admin.html" ></section>
           <section id="404" data-load="404.html"></section>
         </main>
@@ -885,7 +885,11 @@
           }
 
           function doSearch(){
-            
+            var search = {
+              'search' : $('#search').val()
+            }
+            localStorage.setItem("seatch", search.search);
+            window.location = "#search_page";
           }
   </script>
 
