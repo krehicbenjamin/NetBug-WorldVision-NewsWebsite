@@ -103,11 +103,17 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#business">Business</a>
                     </li>
+                    <li class="nav-item admin">
+                      <a class="nav-link" href="#admin">Admin</a>
+                    </li>
                     <li class="nav-item">
                       <a onclick="doLogout()" class="nav-link">Logout</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
+                      <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <button type="button" class="btn btn-outline-primary" onclick="doSearch()">search</button>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -718,7 +724,8 @@
           <section id="world" data-load="world.html" ></section>
           <section id="sports" data-load="sports.html"></section>
           <section id="business" data-load="business.html" ></section>
-
+          <section id="search" data-load="search.html" ></section>
+          <section class="admin" id="admin" data-load="admin.html" ></section>
           <section id="404" data-load="404.html"></section>
         </main>
         <!-- main-panel ends -->
@@ -729,50 +736,19 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
-                <div class="border-top"></div>
+                
               </div>
               <div class="col-sm-3 col-lg-3">
-                <ul class="footer-vertical-nav">
-                  <li class="menu-title"><a href="pages/news-post.html">News</a></li>
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="pages/world.html">World</a></li>
-                  <li><a href="pages/author.html">Magazine</a></li>
-                  <li><a href="pages/business.html">Business</a></li>
-                  <li><a href="pages/politics.html">Politics</a></li>
-                </ul>
+                
               </div>
               <div class="col-sm-3 col-lg-3">
-                <ul class="footer-vertical-nav">
-                  <li class="menu-title"><a href="pages/world.html">World</a></li>
-                  <li><a href="pages/sports.html">Sports</a></li>
-                  <li><a href="pages/art.html">Art</a></li>
-                  <li><a href="#">Magazine</a></li>
-                  <li><a href="pages/real-estate.html">Real estate</a></li>
-                  <li><a href="pages/travel.html">Travel</a></li>
-                  <li><a href="pages/author.html">Author</a></li>
-                </ul>
+                
               </div>
               <div class="col-sm-3 col-lg-3">
-                <ul class="footer-vertical-nav">
-                  <li class="menu-title"><a href="#">Features</a></li>
-                  <li><a href="#">Photography</a></li>
-                  <li><a href="#">Video</a></li>
-                  <li><a href="pages/news-post.html">Newsletters</a></li>
-                  <li><a href="#">Live Events</a></li>
-                  <li><a href="#">Stores</a></li>
-                  <li><a href="#">Jobs</a></li>
-                </ul>
+                
               </div>
               <div class="col-sm-3 col-lg-3">
-                <ul class="footer-vertical-nav">
-                  <li class="menu-title"><a href="#">More</a></li>
-                  <li><a href="#">RSS</a></li>
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">User Agreement</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="pages/aboutus.html">About us</a></li>
-                  <li><a href="pages/contactus.html">Contact</a></li>
-                </ul>
+                
               </div>
             </div>
             <div class="row">
@@ -854,7 +830,7 @@
     <!-- adding SPASS JS-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="assets/js/jQuerySPApp.js"></script>
-
+    <script src="assets/js/utils.js"></script>
 
 
 
@@ -879,12 +855,26 @@
          }
       });
 
+      app.route({
+        view : "search",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+          getArticle(localStorage.getItem("search"));
+            
+         }
+      });
+
       app.run();
       
       if (!window.localStorage.getItem("token")){
               window.location = "login.html";
             }else{
               $('body').show();
+              var user_admin = AUtils.parse_jwt(localStorage.getItem("token"));
+              if(user_admin.r != "ADMIN") $(".admin").remove();
             }
           });
 
@@ -892,6 +882,10 @@
             window.localStorage.clear();
             $('body').hide();
             window.location = "index.html";
+          }
+
+          function doSearch(){
+            
           }
   </script>
 
