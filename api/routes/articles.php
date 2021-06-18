@@ -23,6 +23,11 @@
         Flight::json($articles);
     });
 
+    Flight::route('GET /user/articles/search/@search',function($search){
+        $articles = Flight::articleService()->get_articles($search, 0, 20, '-id');
+        Flight::json($search);
+    });
+
     Flight::route('POST /admin/articles',function(){
         $request = Flight::request();
         $data = $request->data->getData();
