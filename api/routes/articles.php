@@ -1,8 +1,8 @@
 <?php 
     Flight::route('GET /user/articles',function(){
+        $search = Flight::query_param('search');
         $offset = Flight::query_param('offset', 0);
         $limit = Flight::query_param('limit', 10);
-        $search = Flight::query_param('search');
         $order = Flight::query_param('order', '-id');
         Flight::json(Flight::articleService()->get_articles($search, $offset, $limit, $order)); 
     });
@@ -24,7 +24,7 @@
     });
 
     Flight::route('GET /user/articles/search/@search',function($search){
-        $articles = Flight::articleService()->get_articles_by_search($search);
+        $articles = Flight::articleService()->get_articles($search, 0, 10, '-id');
         Flight::json($search);
     });
 
