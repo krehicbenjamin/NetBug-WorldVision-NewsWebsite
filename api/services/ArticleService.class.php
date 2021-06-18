@@ -22,6 +22,9 @@
         public function get_article_by_category($category){
             return ($this->dao->get_by_category($category));
         }
+        public function get_articles_by_search($search){
+            return ($this->dao->get_by_search($search));
+        }
 
         public function delete_article($id){
             $this->dao->delete_article($id);
