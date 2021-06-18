@@ -24,7 +24,7 @@
     });
 
     Flight::route('GET /user/articles/search/@search',function($search){
-        $articles = Flight::articleService()->get_articles($search, 0, 20, '-id');
+        $articles = Flight::articleService()->get_articles_by_search($search);
         Flight::json($search);
     });
 
