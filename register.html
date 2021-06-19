@@ -75,7 +75,8 @@
                 var register_info = {
                     'email' : $('#email').val(),
                     'username' : $('#username').val(),
-                    'password' : $('#password').val()
+                    'password' : $('#password').val(),
+                    'added_at' : Math.floor(Date.now() / 1000)
                 }
                 $("register-link").prop('disabled', true);
 
