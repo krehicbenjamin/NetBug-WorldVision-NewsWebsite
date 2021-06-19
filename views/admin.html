@@ -190,8 +190,27 @@
     </fieldset>
     </form>
     </div>
+    <hr>
     
+    <div class="row" style="margin: 50px; ">
+      <div class="table-responsive">
+          <table id="users-table" class="table responsive table-striped table-bordered table-hover" id="dataTables-example">
+              <thead>
+                  
+                  
+
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </div>
+      <!-- /.table-responsive -->
+  </div>
+
     <script type="text/javascript">
+          get_all();
+
+
         $("#article-form").on("submit", function(e){
             e.preventDefault();
            doAddArticle();
@@ -234,6 +253,41 @@ function imageUploaded() {
         });
     
     }
+
+    function get_all(){
+      $.ajax({
+      url: 'api/admin/users',
+      type: 'GET',
+      beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+      success: function(data){
+          var html = '<tr><th>ID</th><th>Username</th><th>Email</th><th>Status</th><th>ACTION BAN</th></tr>';
+          for(var i = 0; i < data.length; i++){
+            
+            html += '<tr><th>'+data[i].id+'</th><th>'+data[i].username+'</th><th>'+data[i].email+'</th><th>'+data[i].status+'</th><th><button class="btn btn-danger" onclick="userBan('+data[i].id+')">BAN</button></th></tr>';
+              
+          }
+          
+          
+          $("#users-table").html(html);
+          $("#users-table").DataTable();
+          
+      }
+
+    });
+  }
+
+  function userBan(id){
+    $.ajax({
+      url: 'api/admin/users/'+id,
+      type: 'PUT',
+      beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+      success: function(data){
+      }
+
+    });
+  }
+
+  
     
-        
+
 </script>
