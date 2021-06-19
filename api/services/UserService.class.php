@@ -37,6 +37,9 @@ class UserService extends BaseService{
 
     return $db_user;
   }
+  public function ban($id){
+    execute_update('users', $id, 'BANNED', 'status');
+  }
 
   public function register($user){
     try {
@@ -44,7 +47,7 @@ class UserService extends BaseService{
         "username" => $user['username'],
         "password" => md5($user['password']),
         "email" => $user['email'],
-        "status" => "PENDING",
+        "status" => "ACTIVE",
         "type" => "USER",
         "added_at" => date(Config::DATE_FORMAT),
         "token" => md5(random_bytes(16))
