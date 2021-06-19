@@ -74,6 +74,11 @@
     Flight::route('POST /reset', function(){
         Flight::json(Flight::jwt(Flight::userService()->reset(Flight::request()->data->getData())));
     });
+
+    Flight::route('PUT /admin/users/@id', function($id){
+         Flight::userService()->ban($id);
+        
+    });
     
     Flight::route('GET /users/@id', function($id){
         $users = Flight::userService()->get_by_id($id);
