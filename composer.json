@@ -2,6 +2,12 @@
     "name": "benjaminkrehic/benjamin-krehic-project-web",
     "description": "A simple news website",
     "license": "Apache2",
+    "authors": [
+        {
+            "name": "krehicbenjamin",
+            "email": "krehicbenjamin@icloud.com"
+        }
+    ],
     "require": {
         "mikecao/flight": "^1.3",
         "zircote/swagger-php": "^3.1",
