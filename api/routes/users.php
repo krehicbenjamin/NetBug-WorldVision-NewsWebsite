@@ -92,12 +92,10 @@
         Flight::json($user); 
     });
     
-    Flight::route('PUT /users/@id', function($id){
+    Flight::route('PUT /admin/users/@id', function($id){
         $request = Flight::request();
         $data = $request->data->getData();
         $user = Flight::userService()->update($id, $data);
-        $user = Flight::userService()->get_by_id($id);
-        Flight::json($user);
     });
 
     Flight::route('GET /confirm/@token', function($token){
