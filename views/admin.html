@@ -256,32 +256,30 @@ function imageUploaded() {
 
     function get_all(){
       $.ajax({
-      url: 'api/admin/users',
+      url: 'api/admin/articles',
       type: 'GET',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
-          var html = '<tr><th>ID</th><th>Username</th><th>Email</th><th>Status</th><th>ACTION BAN</th></tr>';
+          var html = '<tr><th>ID</th><th>Title</th><th>Category</th><th>Added at</th><th>DELETE</th></tr>';
           for(var i = 0; i < data.length; i++){
             
-            html += '<tr><th>'+data[i].id+'</th><th>'+data[i].username+'</th><th>'+data[i].email+'</th><th>'+data[i].status+'</th><th><button class="btn btn-danger" onclick="userBan('+data[i].id+')">BAN</button></th></tr>';
+            html += '<tr><th>'+data[i].id+'</th><th>'+data[i].title+'</th><th>'+data[i].category+'</th><th>'+Date(data[i].added_at)+'</th><th><button class="btn btn-DANGER" onclick="articleDelete('+data[i].id+')">DELETE</button></th></tr>';
               
           }
           
-          
           $("#users-table").html(html);
-          $("#users-table").DataTable();
-          
       }
 
     });
   }
 
-  function userBan(id){
+  function articleDelete(id){
     $.ajax({
-      url: 'api/admin/users/'+id,
-      type: 'PUT',
+      url: 'api/admin/articles/'+id,
+      type: 'DELETE',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
+        window.location.reload();
       }
 
     });
