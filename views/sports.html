@@ -40,8 +40,6 @@
     type: 'GET',
     beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
     success: function(data){
-     
-        console.log("hashah");
         var html = '<div class="row">';
         
         for(var i = 0; i < data.length; i++){
@@ -63,7 +61,7 @@
   });
   }
 
-  getArticlesSport("SPORT");
+  getArticlesSport("SPORTS");
 
   function openPage(){
     
