@@ -6,7 +6,7 @@
  * )
  */
     Flight::route('GET /user/images/@id',function($id){
-        $images = Flight::imagesService()->get_by_id($id);  //images dao function for searching images by article ID is needed
+        $images = Flight::imagesService()->get_article_images($id);  //images dao function for searching images by article ID is needed
         Flight::json($images);
     });
 
