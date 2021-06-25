@@ -17,11 +17,4 @@
         Flight::json ($category); 
     });
 
-    Flight::route('PUT /admin/images/@id',function($id){
-        $request = Flight::request();
-        $data = $request->data->getData();
-        $images = Flight::imagesService()->update($id, $data);
-        Flight::json ($images); 
-    });
-
 ?>
