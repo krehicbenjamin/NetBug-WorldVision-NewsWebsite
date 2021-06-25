@@ -7,6 +7,10 @@ class ImagesDao extends BaseDao{
     public function __construct(){
         parent::__construct("images");
     }
+
+    public function get_art_images($article_id){
+        query("SELECT * FROM images WHERE article_id = :article_id LIMIT 10 OFFSET 0", ["article_id" => $article_id]);
+    }
 }
 
 ?>
