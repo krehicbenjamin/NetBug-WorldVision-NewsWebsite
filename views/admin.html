@@ -194,14 +194,18 @@
     
     <div class="row" style="margin: 50px; ">
       <div class="table-responsive">
-          <table id="users-table" class="table responsive table-striped table-bordered table-hover" id="dataTables-example">
+          <table id="article_table" class="table responsive table-striped table-bordered table-hover">
               <thead>
-                  
-                  
-
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Added at</th>
+                  <th>DELETE</th>
+                </tr>
               </thead>
-              <tbody>
-              </tbody>
+
+              <tbody></tbody>
           </table>
       </div>
       <!-- /.table-responsive -->
@@ -260,14 +264,15 @@ function imageUploaded() {
       type: 'GET',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
-          var html = '<tr><th>ID</th><th>Title</th><th>Category</th><th>Added at</th><th>DELETE</th></tr>';
+          var html = '';
           for(var i = 0; i < data.length; i++){
             
             html += '<tr><th>'+data[i].id+'</th><th>'+data[i].title+'</th><th>'+data[i].category+'</th><th>'+Date(data[i].added_at)+'</th><th><button class="btn btn-DANGER" onclick="articleDelete('+data[i].id+')">DELETE</button></th></tr>';
               
           }
           
-          $("#users-table").html(html);
+          $("#article_table").html(html);
+          $("#article_table").DataTable();
       }
 
     });
