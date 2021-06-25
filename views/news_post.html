@@ -5,6 +5,118 @@
           <div id="article_view" class="news-post-wrapper-sm ">
             
           </div>
+
+
+
+          <!--IMAGE THINGIE START-->
+          <style>
+            img {
+                width: 100%;
+            }
+            .height {
+                height: 10px;
+            }
+               
+            /* Image-container design */
+            .image-container {
+                max-width: 800px;
+                position: relative;
+                margin: auto;
+            }
+               
+            .next {
+                right: 0;
+            }
+               
+            /* Next and previous icon design */
+            .previous,
+            .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                padding: 10px;
+                margin-top: -25px;
+            }
+               
+            /* caption decorate */
+            .captionText {
+                color: #000000;
+                font-size: 14px;
+                position: absolute;
+                padding: 12px 12px;
+                bottom: 8px;
+                width: 100%;
+                text-align: center;
+            }
+               
+             /* Slider image number */
+            .slideNumber {
+                background-color: #5574C5;
+                color: white;
+                border-radius: 25px;
+                right: 0;
+                opacity: .5;
+                margin: 5px;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 24px;
+                position: absolute;
+            }
+            .fa {
+                font-size: 32px;
+            }
+               
+            .fa:hover {
+                transform: rotate(360deg);
+                transition: 1s;
+                color: white;
+            }
+               
+            .footerdot {
+                cursor: pointer;
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #bbbbbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.5s ease;
+            }
+               
+            .active,
+            .footerdot:hover {
+                background-color: black;
+            }
+          </style>
+    
+        
+           
+        <!-- Image container of the image slider -->
+        <div class="image-container">
+          <div id="image-slider">
+            <!-- GETTING IMAGES -->
+          </div>
+       
+            <!-- Next and Previous icon to change images -->
+            <a class="previous" onclick="moveSlides(-1)">
+                <i class="fa fa-chevron-circle-left"></i>
+            </a>
+            <a class="next" onclick="moveSlides(1)">
+                <i class="fa fa-chevron-circle-right"></i>
+            </a>
+        </div>
+        <br>
+       
+        <div id="activate-slider" style="text-align:center">
+            <!--adding image sliders-->
+        </div>
+
+          <!--IMAGE THINGIE END-->
+
+
+          
         </div>
       </div>
     </div>
@@ -43,6 +155,29 @@
 
     });
     }
+
+    function getImages(id){
+      $.ajax({
+      url: 'api/user/images/'+id,
+      type: 'GET',
+      beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+      success: function(data){
+        console.log(data);
+
+          var html_images = '';
+          var html_nav = '';
+          for(var i = 0; i < data.length; i++){
+            html_images += '<div class="slide"><div class="slideNumber">'+(i+1)+'</div><img src="data:image/png;base64,'+data[i].picture64+'> </div>';
+            html_nav += '<span class="footerdot" onclick="activeSlide('+(i+1)+')"></span>';
+          }
+            
+          $("#image-slider").html(html_images);
+          $("#activate-slider").html(html_nav);
+      }
+
+    });
+    }
+
     window.onfocus = function() {
 	    if(!window.location.hash) {
 		    window.location = window.location + '#news_post';
@@ -59,4 +194,41 @@
   $( "#news_post" ).focusin(function() {
     location.reload();
   });*/
+
+  var slideIndex = 1;
+            displaySlide(slideIndex);
+       
+            function moveSlides(n) {
+                displaySlide(slideIndex += n);
+            }
+       
+            function activeSlide(n) {
+                displaySlide(slideIndex = n);
+            }
+       
+            /* Main function */
+            function displaySlide(n) {
+                var i;
+                var totalslides = 
+                    document.getElementsByClassName("slide");
+                  
+                var totaldots = 
+                    document.getElementsByClassName("footerdot");
+                  
+                if (n > totalslides.length) {
+                    slideIndex = 1;
+                }
+                if (n < 1) {
+                    slideIndex = totalslides.length;
+                }
+                for (i = 0; i < totalslides.length; i++) {
+                    totalslides[i].style.display = "none";
+                }
+                for (i = 0; i < totaldots.length; i++) {
+                    totaldots[i].className = 
+                    totaldots[i].className.replace(" active", "");
+                }
+                totalslides[slideIndex - 1].style.display = "block";
+                totaldots[slideIndex - 1].className += " active";
+            }
   </script>
