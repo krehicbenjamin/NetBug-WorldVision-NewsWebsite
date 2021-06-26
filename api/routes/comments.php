@@ -5,9 +5,9 @@
  *     @OA\Response(response="200", description="Fetch individual images")
  * )
  */
-    Flight::route('GET /user/images/@id',function($id){
-        $images = Flight::commentsService()->get_article_images($id);  //images dao function for searching images by article ID is needed
-        Flight::json($images);
+    Flight::route('GET /user/comments/@id',function($id){
+        $comments = Flight::commentsService()->get_article_comments($id); 
+        Flight::json($comments);
     });
 
     Flight::route('POST /user/comments',function(){
