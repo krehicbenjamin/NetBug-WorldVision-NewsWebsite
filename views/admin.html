@@ -210,14 +210,36 @@
       </div>
       <!-- /.table-responsive -->
   </div>
+  <hr>
+  <div class="testbox">
+    <form id="image-form" role="form">
+     <fieldset>
+        
+      
+      <div class="item">
+        <p>Article ID</p>
+        <input id="article_id_image" type="text" name="id" placeholder="Article_id" required/>
+        
+      <div class="item">
+        <input type="file" id="myFile" name="Picture" accept="image/*" onchange="imageUploaded()" required>
+        <button type="button" onclick="doAddImage()"> ADD IMAGE </button>
+      </div>
+    </fieldset>
+    </form>
+    </div>
+    <hr>
 
-    <script type="text/javascript">
+<script type="text/javascript">
           get_all();
 
 
         $("#article-form").on("submit", function(e){
             e.preventDefault();
            doAddArticle();
+        });
+
+        $("#image-form").on("submit", function(e){
+           doAddImage();
         });
         let base64String = "";
   
@@ -239,6 +261,8 @@ function imageUploaded() {
     }
       reader.readAsDataURL(file);
 }
+
+
    function doAddArticle(){
         var article_info = {
             'title' : $('#title').val(),
@@ -272,7 +296,7 @@ function imageUploaded() {
           }
           
           $("#article_table").html(html);
-          $("#article_table").DataTable();
+          
       }
 
     });
@@ -288,6 +312,21 @@ function imageUploaded() {
       }
 
     });
+  }
+
+  function doAddImage(){
+    var image_info = {
+            'article_id' : $('#article_id_image').val(),
+            'picture64' : base64String
+        }
+       console.log(base64String);
+        $.post("api/admin/images", image_info).done(function(data){
+            console.log(data);
+            //window.localStorage.setItem("token", data.token);
+            
+        }).fail(function(error){
+            alert("Failed");
+        });
   }
 
   
