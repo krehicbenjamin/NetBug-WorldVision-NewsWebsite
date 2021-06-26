@@ -13,272 +13,37 @@
 
 
         </div>
-      </div>
-    </div>
-  </div>
-  <hr>
+
   <!--IMAGE THINGIE START-->
-  <style>
-    body{margin-top:20px;}
+ <div id="imagesArt" style="margin-left: 190px;">
 
-.content-item {
-    padding:30px 0;
-	background-color:#FFFFFF;
-}
-
-.content-item.grey {
-	background-color:#F0F0F0;
-	padding:50px 0;
-	height:100%;
-}
-
-.content-item h2 {
-	font-weight:700;
-	font-size:35px;
-	line-height:45px;
-	text-transform:uppercase;
-	margin:20px 0;
-}
-
-.content-item h3 {
-	font-weight:400;
-	font-size:20px;
-	color:#555555;
-	margin:10px 0 15px;
-	padding:0;
-}
-
-.content-headline {
-	height:1px;
-	text-align:center;
-	margin:20px 0 70px;
-}
-
-.content-headline h2 {
-	background-color:#FFFFFF;
-	display:inline-block;
-	margin:-20px auto 0;
-	padding:0 20px;
-}
-
-.grey .content-headline h2 {
-	background-color:#F0F0F0;
-}
-
-.content-headline h3 {
-	font-size:14px;
-	color:#AAAAAA;
-	display:block;
-}
-
-
-#comments {
-    box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
-	background-color:#FFFFFF;
-}
-
-#comments form {
-	margin-bottom:30px;
-}
-
-#comments .btn {
-	margin-top:7px;
-}
-
-#comments form fieldset {
-	clear:both;
-}
-
-#comments form textarea {
-	height:100px;
-}
-
-#comments .media {
-	border-top:1px dashed #DDDDDD;
-	padding:20px 0;
-	margin:0;
-}
-
-#comments .media > .pull-left {
-    margin-right:20px;
-}
-
-#comments .media img {
-	max-width:100px;
-}
-
-#comments .media h4 {
-	margin:0 0 10px;
-}
-
-#comments .media h4 span {
-	font-size:14px;
-	float:right;
-	color:#999999;
-}
-
-#comments .media p {
-	margin-bottom:15px;
-	text-align:justify;
-}
-
-#comments .media-detail {
-	margin:0;
-}
-
-#comments .media-detail li {
-	color:#AAAAAA;
-	font-size:12px;
-	padding-right: 10px;
-	font-weight:600;
-}
-
-#comments .media-detail a:hover {
-	text-decoration:underline;
-}
-
-#comments .media-detail li:last-child {
-	padding-right:0;
-}
-
-#comments .media-detail li i {
-	color:#666666;
-	font-size:15px;
-	margin-right:10px;
-}
-    img {
-        width: 100%;
-    }
-    .height {
-        height: 10px;
-    }
-       
-    /* Image-container design */
-    .image-container {
-        max-width: 800px;
-        position: relative;
-        margin: auto;
-    }
-       
-    .next {
-        right: 0;
-    }
-       
-    /* Next and previous icon design */
-    .previous,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        padding: 10px;
-        margin-top: -25px;
-    }
-       
-    /* caption decorate */
-    .captionText {
-        color: #000000;
-        font-size: 14px;
-        position: absolute;
-        padding: 12px 12px;
-        bottom: 8px;
-        width: 100%;
-        text-align: center;
-    }
-       
-     /* Slider image number */
-    .slideNumber {
-        background-color: #5574C5;
-        color: white;
-        border-radius: 25px;
-        right: 0;
-        opacity: .5;
-        margin: 5px;
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 24px;
-        position: absolute;
-    }
-    .fa {
-        font-size: 32px;
-    }
-       
-    .fa:hover {
-        transform: rotate(360deg);
-        transition: 1s;
-        color: white;
-    }
-       
-    .footerdot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbbbbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.5s ease;
-    }
-       
-    .active-img,
-    .footerdot:hover {
-        background-color: black;
-    }
-  </style>
-
-
-   
-<!-- Image container of the image slider -->
-<div class="image-container">
-  <div id="image-slider">
-    <!-- GETTING IMAGES -->
-  </div>
-
-    <!-- Next and Previous icon to change images -->
-    <a class="previous" onclick="moveSlides(-1)">
-        <i class="fa fa-chevron-circle-left"></i>
-    </a>
-    <a class="next" onclick="moveSlides(1)">
-        <i class="fa fa-chevron-circle-right"></i>
-    </a>
-</div>
-<br>
-
-<div id="activate-slider" style="text-align:center">
-    <!--adding image sliders-->
-</div>
-
+ </div>
   <!--IMAGE THINGIE END-->
 
-<!--COMMENTS THINGIE START-->
+  <!--COMMENTS THINGIE START-->
 <section class="content-item" id="comments">
   <div class="container">   
     <div class="row">
           <div class="col-sm-8">   
               <form>
-                <h3 class="pull-left">Add a comment</h3>
-                <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                <h3>Add a comment</h3>
+                <hr>
+                <button type="submit" class="btn btn-outline-primary pull-right" onclick="addComment();">Submit</button>
                   <fieldset>
                       <div class="row">
                           
                           <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                              <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                              <input class="form-control" id="message" placeholder="Your comment" required=""></input>
                           </div>
                       </div>  	
                   </fieldset>
               </form>
-              
-              
+              <hr>
+              <div id="comments-post">
               <!-- COMMENT 1 - START -->
-              <div id="comments" class="media">
-                  
-                  <div class="media-body"><h4 class="media-heading">John Doe</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul class="list-unstyled list-inline media-detail pull-left"><li>27/02/2014</li>/ul></div>
-
-
-              </div>
-              <!-- COMMENT 1 - END -->
               
+              <!-- COMMENT 1 - END -->
+            </div>
              
             
           </div>
@@ -287,6 +52,16 @@
 </section>
 
 <!--COMMENTS THINGIE END-->
+
+
+      </div>
+    </div>
+  </div>
+  <hr>
+  
+
+
+
 
 
 
@@ -305,7 +80,7 @@
       type: 'GET',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
-        console.log(data);
+       
 
           var html = '';
           
@@ -327,17 +102,14 @@
       type: 'GET',
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
-        console.log(data);
-
-          var html_images = '';
-          var html_nav = '';
+          var html = '';
+          
           for(var i = 0; i < data.length; i++){
-            html_images += '<div class="slide"><div class="slideNumber">'+(i+1)+'</div><img src="data:image/png;base64,'+data[i].picture64+'> </div>';
-            html_nav += '<span class="footerdot" onclick="activeSlide('+(i+1)+')"></span>';
+            html += '<img src="data:image/png;base64,'+data[i].picture64+'" style="width: 710px; height: 500px;"> <hr>';
+            
           }
             
-          $("#image-slider").html(html_images);
-          $("#activate-slider").html(html_nav);
+          $("#imagesArt").html(html);
       }
 
     });
@@ -350,52 +122,23 @@
 	    }
     }
       
-    
-    
-   /* $( "#news_post" )
-  .focusout(function() {
-    localStorage.removeItem("article_id");
-  });
-  $( "#news_post" ).focusin(function() {
-    location.reload();
-  });*/
+    //geting users by ID
+    function getUser(id, handleData){
+      var username = '';
+      $.ajax({
+        url: 'api/user/users/'+id,
+        type: 'GET',
+        beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+        success: function(data){
+        
+        }
+  
+      });
+          
+          
+      }
 
-  var slideIndex = 1;
-            displaySlide(slideIndex);
-       
-            function moveSlides(n) {
-                displaySlide(slideIndex += n);
-            }
-       
-            function activeSlide(n) {
-                displaySlide(slideIndex = n);
-            }
-       
-            /* Main function */
-            function displaySlide(n) {
-                var i;
-                var totalslides = 
-                    document.getElementsByClassName("slide");
-                  
-                var totaldots = 
-                    document.getElementsByClassName("footerdot");
-                  
-                if (n > totalslides.length) {
-                    slideIndex = 1;
-                }
-                if (n < 1) {
-                    slideIndex = totalslides.length;
-                }
-                for (i = 0; i < totalslides.length; i++) {
-                    totalslides[i].style.display = "none";
-                }
-                for (i = 0; i < totaldots.length; i++) {
-                    totaldots[i].className = 
-                    totaldots[i].className.replace("active-img", "");
-                }
-                totalslides[slideIndex - 1].style.display = "block";
-                totaldots[slideIndex - 1].className += " active-img";
-            }
+ 
 
             //Comments
 
@@ -410,13 +153,37 @@
   
             var html = '';
             for(var i = 0; i < data.length; i++){
-              html +='<div class="media-body"><h4 class="media-heading">'+data[i].user_id+'</h4><p>'+data[i].comment_text+'</p><ul class="list-unstyled list-inline media-detail pull-left"><li>'+Date(data[i].added_at)+'</li>/ul></div>';
+           
+              html +='<div class="media"><div class="media-body"><h4 id = "username"class="media-heading">'+data[i].username+'</h4><p>'+data[i].comment_text+'</p><ul class="list-unstyled list-inline media-detail pull-left"><li>'+Date(data[i].added_at)+'</li></ul></div></div>';
+              
             }
               
-            $("#comments").html(html);
+            $("#comments-post").html(html);
            
         }
   
       });
       }
+
+      function addComment(){      
+        var comment_info = {
+            'article_id' : localStorage.getItem("article_id"),
+            'comment_text' : $('#message').val(),
+            'user_id' : localStorage.getItem("id"),
+            'username' : localStorage.getItem("username"),
+            'added_at' : Math.floor(Date.now() / 1000)
+        }
+        console.log(comment_info);
+        $.post("api/comments", comment_info).done(function(data){
+            console.log(data);
+        }).fail(function(error){
+            alert(error.responseJSON.message);
+        });
+      }
+
+      
+
+
+      
+
   </script>
