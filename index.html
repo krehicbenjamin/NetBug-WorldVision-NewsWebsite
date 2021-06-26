@@ -860,6 +860,8 @@
          },
         onReady: function() { 
           getArticle(localStorage.getItem("article_id"));
+          getImages(localStorage.getItem("article_id"));
+          getComments(localStorage.getItem("article_id"));
             
          }
       });
@@ -872,7 +874,7 @@
          },
         onReady: function() { 
           getArticle(localStorage.getItem("search"));
-            
+ 
          }
       });
 
