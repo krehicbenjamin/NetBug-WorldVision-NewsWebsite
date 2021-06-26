@@ -79,8 +79,13 @@
          Flight::userService()->ban($id);
         
     });
-    
-    Flight::route('GET /users/@id', function($id){
+    /**
+ * @OA\Get(path="/user/users/{id}", tags={"x-user", "user"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="id of the user"),
+ *     @OA\Response(response="200", description="Fetch individual user by ID")
+ * )
+ */
+    Flight::route('GET /user/users/@id', function($id){
         $users = Flight::userService()->get_by_id($id);
         Flight::json($users);
     });
