@@ -9,7 +9,7 @@ class CommentsDao extends BaseDao{
     }
 
     public function get_art_comments($article_id){
-        query("SELECT * FROM comments WHERE article_id = :article_id LIMIT 10 OFFSET 0", ["article_id" => $article_id]);
+        query("SELECT * FROM comments WHERE article_id = :article_id LIMIT 30 OFFSET 0", ["article_id" => $article_id]);
     }
 }
 
