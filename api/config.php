@@ -6,7 +6,7 @@ class Config{
     const DB_HOST = "localhost";
     const DC_USERNAME = "root";
     const DB_PASSWORD = "KagamiTaiga10";
-    const DB_SCHEME = "web-benjamin";
+    const DB_SCHEME = "webbenjamin";
 
     const JWT_SECRET = "uhaiufhfbyuesfbiauk3fby3";
     const JWT_TOKEN_TIME = 604800;
