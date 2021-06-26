@@ -12,6 +12,8 @@
       href="./assets/vendors/mdi/css/materialdesignicons.min.css"
     />
     <link rel="stylesheet" href="./assets/vendors/aos/dist/aos.css/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+      
     <link
       rel="stylesheet"
       href="./assets/vendors/owl.carousel/dist/assets/owl.carousel.min.css"
@@ -886,6 +888,8 @@
               $('body').show();
               var user_admin = AUtils.parse_jwt(localStorage.getItem("token"));
               if(user_admin.r != "ADMIN") $(".admin").remove();
+              localStorage.setItem("username", user_admin.username);
+              localStorage.setItem("id", user_admin.id);
             }
           });
 
