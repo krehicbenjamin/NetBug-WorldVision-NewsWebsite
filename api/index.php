@@ -45,7 +45,7 @@ Flight::route('GET /', function(){
   require_once dirname(__FILE__)."/routes/tags.php";
   require_once dirname(__FILE__)."/routes/categories.php";
   require_once dirname(__FILE__)."/routes/images.php";
-
+  require_once dirname(__FILE__)."/routes/comments.php";
   /* require BLL */
   
   require_once dirname(__FILE__)."/services/ArticleService.class.php";   
@@ -53,6 +53,7 @@ Flight::route('GET /', function(){
   require_once dirname(__FILE__)."/services/TagsService.class.php";   
   require_once dirname(__FILE__)."/services/CategoriesService.class.php";
   require_once dirname(__FILE__)."/services/ImagesService.class.php";   
+  require_once dirname(__FILE__)."/services/CommentsService.class.php";   
 
 
   /* register services */
@@ -61,6 +62,7 @@ Flight::route('GET /', function(){
   Flight::register("tagsService", "TagsService");
   Flight::register("categoriesService", "CategoriesService");
   Flight::register("imagesService", "ImagesService");
+  Flight::register("commentsService", "CommentsService");
 
 
   
