@@ -13,8 +13,8 @@
     Flight::route('POST /admin/images',function(){
         $request = Flight::request();
         $data = $request->data->getData();
-        $category = Flight::imagesService()->add($data); 
-        Flight::json ($category); 
+        $image = Flight::imagesService()->add($data); 
+        Flight::json ($image); 
     });
 
 ?>
