@@ -308,10 +308,6 @@
         console.log(data);
 
           var html = '';
-          var test = data.id;
-          if(test == localStorage.getItem("article_id")){} else location.reload();
-          console.log(test != localStorage.getItem("article_id"));
-          
           
             html += '<h1 class="text-center">'+data.title+'</h1><div class="text-center"><a href="#" class="btn btn-dark font-weight-bold mb-4">'
             +data.category+'</a></div><p class="fs-15 d-flex justify-content-center align-items-center m-0"><img src="data:image/png;base64,'+data.picture64+'" class="img-fluid mb-4" style="width: 980px; height: 500px;"/>'
