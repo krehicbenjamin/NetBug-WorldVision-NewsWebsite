@@ -9,8 +9,8 @@
         }
 
         public function get_article_comments($id){
-            return($this->dao->get_art_images($id));
+            return($this->dao->get_art_comments($id));
         }
-        
+
     }
 ?>
