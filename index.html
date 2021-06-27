@@ -873,6 +873,54 @@
       });
 
       app.route({
+        view : "main_page",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+          getArticles();
+            
+         }
+      });
+
+      app.route({
+        view : "world",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+          getArticlesWorld();
+            
+         }
+      });
+
+      app.route({
+        view : "sports",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+          getArticlesSport("SPORTS");
+            
+         }
+      });
+      app.route({
+        view : "business",
+  
+        onCreate: function() { 
+
+         },
+        onReady: function() { 
+  
+          getArticlesBus("BUSINESS");
+            
+         }
+      });
+
+      app.route({
         view : "search_page",
   
         onCreate: function() { 
