@@ -3,7 +3,7 @@
         $search = Flight::query_param('search');
         $offset = Flight::query_param('offset', 0);
         $limit = Flight::query_param('limit', 50);
-        $order = Flight::query_param('order', '-id');
+        $order = Flight::query_param('order', '+id');
         Flight::json(Flight::articleService()->get_articles($search, $offset, $limit, $order)); 
     });
 
