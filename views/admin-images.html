@@ -259,9 +259,9 @@ function imageUploaded() {
             'article_id' : $('#article_id_image').val(),
             'picture64' : base64String
         }
-       console.log(base64String);
+       
         $.post("api/admin/images", image_info).done(function(data){
-            console.log(data);
+            console.log("HELO ");
             //window.localStorage.setItem("token", data.token);
             
         }).fail(function(error){

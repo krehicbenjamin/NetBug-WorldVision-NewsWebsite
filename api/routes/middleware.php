@@ -13,8 +13,11 @@ Flight::route('/user/*', function(){
 
 /* middleware for admin users */
 Flight::route('/admin/*', function(){
+  Flight::json((array)\Firebase\JWT\JWT::decode(Flight::header("Authentication"), Config::JWT_SECRET, ["HS256"]));
   try {
     $user = (array)\Firebase\JWT\JWT::decode(Flight::header("Authentication"), Config::JWT_SECRET, ["HS256"]);
+    Flight::json($user);
+    print_r($user);
     if ($user['r'] != "ADMIN"){
       throw new Exception("Admin access required", 403);
     }

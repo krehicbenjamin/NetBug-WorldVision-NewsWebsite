@@ -303,20 +303,7 @@ function imageUploaded() {
     });
   }
 
-  function doAddImage(){
-    var image_info = {
-            'article_id' : $('#article_id_image').val(),
-            'picture64' : base64String
-        }
-       console.log(base64String);
-        $.post("api/admin/images", image_info).done(function(data){
-            console.log(data);
-            //window.localStorage.setItem("token", data.token);
-            
-        }).fail(function(error){
-            alert("Failed");
-        });
-  }
+  
 
   
     
