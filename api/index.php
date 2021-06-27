@@ -23,7 +23,7 @@ Flight::map('header', function($name){
 
 /* utility function for generating JWT token */
 Flight::map('jwt', function($user){
-  $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "aid" => $user["id"], "r" => $user["type"]], Config::JWT_SECRET);
+  $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "username" =>$user["username"],"aid" => $user["id"], "r" => $user["type"]], Config::JWT_SECRET);
   
   return ["token" => $jwt];
 });
@@ -42,11 +42,11 @@ Flight::route('GET /', function(){
   /* require routes */
   require_once dirname(__FILE__)."/routes/articles.php";
   require_once dirname(__FILE__)."/routes/users.php";
-  require_once dirname(__FILE__)."/routes/middleware.php";
   require_once dirname(__FILE__)."/routes/tags.php";
   require_once dirname(__FILE__)."/routes/categories.php";
   require_once dirname(__FILE__)."/routes/images.php";
   require_once dirname(__FILE__)."/routes/comments.php";
+  require_once dirname(__FILE__)."/routes/middleware.php";
   /* require BLL */
   
   require_once dirname(__FILE__)."/services/ArticleService.class.php";   
