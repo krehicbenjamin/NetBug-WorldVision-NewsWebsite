@@ -18,12 +18,13 @@
   </div>
 
   <script type="text/javascript">
-    getArticles(localStorage.getItem('search'));
     
-    function getArticles(search){
+    function getSearchArticles(search){
     $.ajax({
-      url: 'api/user/articles?' + search,
+      url: 'api/user/articles',
+      data:{ 'search': search},
       type: 'GET',
+
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
         console.log(data);
