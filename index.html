@@ -869,14 +869,13 @@
       });
 
       app.route({
-        view : "search",
+        view : "search_page",
   
         onCreate: function() { 
 
          },
         onReady: function() { 
-          getArticle(localStorage.getItem("search"));
- 
+          getSearchArticles(localStorage.getItem('search'));
          }
       });
 
