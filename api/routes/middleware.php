@@ -13,7 +13,7 @@ Flight::route('/user/*', function(){
 
 /* middleware for admin users */
 Flight::route('/admin/*', function(){
-  Flight::json((array)\Firebase\JWT\JWT::decode(Flight::header("Authentication"), Config::JWT_SECRET, ["HS256"]));
+  Flight::json(Flight::header("Authentication"));
   try {
     $user = (array)\Firebase\JWT\JWT::decode(Flight::header("Authentication"), Config::JWT_SECRET, ["HS256"]);
     Flight::json($user);
@@ -26,6 +26,8 @@ Flight::route('/admin/*', function(){
   } catch (\Exception $e) {
     Flight::json(["message" => $e->getMessage()], 401);
     die;
+
+
   }
 });
 
