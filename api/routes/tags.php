@@ -9,7 +9,7 @@ Flight::route('GET /user/tags',function(){
 });
 
 Flight::route('GET /user/tags/@id',function($id){
-    $tag = Flight::tagsService()->get_by_id($id);
+    $tag = Flight::tagsService()->get_article_tags($id);
     Flight::json($tag);
 });
 
