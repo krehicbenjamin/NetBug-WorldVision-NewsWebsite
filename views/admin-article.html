@@ -230,7 +230,7 @@
         $("#image-form").on("submit", function(e){
            doAddImage();
         });
-        let base64String = "";
+        let base64 = "";
   
 function imageUploaded() {
     var file = document.querySelector(
@@ -240,13 +240,13 @@ function imageUploaded() {
     console.log("next");
       
     reader.onload = function () {
-        base64String = reader.result.replace("data:", "")
+        base64 = reader.result.replace("data:", "")
             .replace(/^.+,/, "");
   
-        imageBase64Stringsep = base64String;
+        imagebase64sep = base64;
   
-        // alert(imageBase64Stringsep);
-        //console.log(base64String);
+        // alert(imagebase64sep);
+        //console.log(base64);
     }
       reader.readAsDataURL(file);
 }
@@ -257,7 +257,7 @@ function imageUploaded() {
             'title' : $('#title').val(),
             'category' : $('#cat').val(),
             'body' : $('#body').val(),
-            'picture64' : base64String,
+            'picture64' : base64,
             'added_at' : Math.floor(Date.now() / 1000)
         }
         console.log(article_info.picture64);
