@@ -9,7 +9,10 @@
         }
         public function get_tags($search, $offset, $limit, $order){
             return ($this->dao->get_all($offset, $limit, $order));
-    }
+        }
+        public function get_article_tags($id){
+            return ($this->dao->get_tags($id));
+        }
 
     }
 ?>
