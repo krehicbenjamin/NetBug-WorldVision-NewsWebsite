@@ -5,8 +5,7 @@
           <div id="article_view" class="news-post-wrapper-sm ">
             
           </div>
-
-
+          
 
           
 
@@ -19,6 +18,16 @@
 
  </div>
   <!--IMAGE THINGIE END-->
+
+
+  <div id="tags" class="text-center pb-5 mb-5 border-bottom">
+    <a class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0">News</a>
+    
+  </div>
+
+
+
+
 
   <!--COMMENTS THINGIE START-->
 <section class="content-item" id="comments">
@@ -182,7 +191,28 @@
       }
 
       
-
+      
+      
+    function getTags(id){
+      
+      $.ajax({
+        url: 'api/user/tags/'+id,
+        type: 'GET',
+        beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
+        success: function(data){
+          console.log(data);
+  
+            var html = '';
+            for(var i = 0; i < data.length; i++){
+              html +='<a class="btn btn-dark font-weight-bold mr-2 mb-2 mb-sm-0">'+data[i].tag_name+'</a>';
+            }
+              
+            $("#tags").html(html);
+           
+        }
+  
+      });
+      }
 
       
 
