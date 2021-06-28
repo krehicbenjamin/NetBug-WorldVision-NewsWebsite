@@ -84,10 +84,12 @@
                     console.log(data);
                     //window.localStorage.setItem("token", data.token);
                     window.location = "login.html";
+                    toastr.error('Succesfully registered to NetBug!');
                 }).fail(function(error){
                     $("register-link").prop('disabled', false);
-                    alert(error.responseJSON.message);
+                    toastr.error('Registration failed please try again!');
                 });
+                
             
             }
                 

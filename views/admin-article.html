@@ -264,9 +264,9 @@ function imageUploaded() {
         $.post("api/admin/articles", article_info).done(function(data){
             console.log(data);
             //window.localStorage.setItem("token", data.token);
-            
+            toastr.error('Succesfully added article!');
         }).fail(function(error){
-            alert(error.responseJSON.message);
+          toastr.error('Failed to add article!');
         });
     
     }
@@ -298,6 +298,8 @@ function imageUploaded() {
       beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem('token'));},
       success: function(data){
         window.location.reload();
+        toastr.error('Succesfully deleted an article!');
+       
       }
 
     });

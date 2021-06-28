@@ -77,9 +77,10 @@
                     console.log(data.token);
                     window.localStorage.setItem("token", data.token);
                     window.location = "index.html";
+                    toastr.error('Succesfully logged in!');
                 }).fail(function(error){
                     $("login-link").prop('disabled', false);
-                    alert(error.responseJSON.message);
+                    toastr.error('Login failed please check your credentials!');
                 });
             
             }

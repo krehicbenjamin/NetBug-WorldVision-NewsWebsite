@@ -261,11 +261,10 @@ function imageUploaded() {
         }
        
         $.post("api/admin/images", image_info).done(function(data){
-            console.log("HELO ");
             //window.localStorage.setItem("token", data.token);
-            
+            toastr.success('Succesfuly added a image to article!');
         }).fail(function(error){
-            alert("Failed");
+          toastr.error('Adding tag to article failed!');
         });
   }
 
