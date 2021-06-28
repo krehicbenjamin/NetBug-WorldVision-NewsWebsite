@@ -166,7 +166,7 @@
       <p>Article ID</p>
       <input id="article_id_tag" type="text" name="id" placeholder="Article_id" required/>
       <input id="tag_input" type="text" id="myTag" name="Tag" required>
-      <button type="button" onclick="doAddTag()"> ADD TAG </button>
+      <button id="tag-link" type="button" onclick="doAddTag()"> ADD TAG </button>
     </div>
   </fieldset>
   </form>
@@ -233,12 +233,13 @@
             'article_id' : $('#article_id_tag').val(),
             'tag_name' : $('#tag_input').val()
         }
-       
+        $("tag-link").prop('disabled', true);
         $.post("api/admin/tags", image_info).done(function(data){
             console.log(data);
             //window.localStorage.setItem("token", data.token);
             toastr.success('Succesfuly added a tag to article!');
         }).fail(function(error){
+          $("tag-link").prop('disabled', false);
           toastr.error('Adding tag to article failed!');
         });
   }
