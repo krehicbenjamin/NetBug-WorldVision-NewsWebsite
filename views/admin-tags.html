@@ -233,7 +233,7 @@
             'article_id' : $('#article_id_tag').val(),
             'tag_name' : $('#tag_input').val()
         }
-       console.log(base64String);
+       
         $.post("api/admin/tags", image_info).done(function(data){
             console.log(data);
             //window.localStorage.setItem("token", data.token);
