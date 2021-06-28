@@ -169,7 +169,7 @@
       
     <div class="item">
       <input type="file" id="myImage" name="Picture" accept="image/*" onchange="imageUploaded()" required>
-      <button type="button" onclick="doAddImage()"> ADD IMAGE </button>
+      <button id="image-link" type="button" onclick="doAddImage()"> ADD IMAGE </button>
     </div>
   </fieldset>
   </form>
@@ -259,11 +259,12 @@ function imageUploaded() {
             'article_id' : $('#article_id_image').val(),
             'picture64' : base64String
         }
-       
+        $("image-link").prop('disabled', true);
         $.post("api/admin/images", image_info).done(function(data){
             //window.localStorage.setItem("token", data.token);
             toastr.success('Succesfuly added a image to article!');
         }).fail(function(error){
+          $("image-link").prop('disabled', false);
           toastr.error('Adding tag to article failed!');
         });
   }
