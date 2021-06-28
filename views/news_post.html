@@ -182,7 +182,7 @@
             'added_at' : Math.floor(Date.now() / 1000)
         }
         console.log(comment_info);
-        $.post("api/comments", comment_info).done(function(data){
+        $.post("api/user/comments", comment_info).done(function(data){
             console.log(data);
         }).fail(function(error){
             alert(error.responseJSON.message);
