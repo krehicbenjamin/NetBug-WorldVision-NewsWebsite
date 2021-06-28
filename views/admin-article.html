@@ -186,7 +186,7 @@
       </div>
       <div class="item">
         <input type="file" id="myFile" name="Picture" accept="image/*" onchange="imageUploaded()" required>
-        <button type="button" onclick="doAddArticle()"> ADD ARTICLE </button>
+        <button id="article-link" type="button" onclick="doAddArticle()"> ADD ARTICLE </button>
       </div>
     </fieldset>
     </form>
@@ -260,12 +260,14 @@ function imageUploaded() {
             'picture64' : base64,
             'added_at' : Math.floor(Date.now() / 1000)
         }
-        console.log(article_info.picture64);
+       
+        $("article-link").prop('disabled', true);
         $.post("api/admin/articles", article_info).done(function(data){
             console.log(data);
             //window.localStorage.setItem("token", data.token);
             toastr.error('Succesfully added article!');
         }).fail(function(error){
+          $("article-link").prop('disabled', false);
           toastr.error('Failed to add article!');
         });
     
